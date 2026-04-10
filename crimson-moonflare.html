@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crimson Moonflare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel+Decorative:wght@700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --crimson:    #c0182a;
+      --blood:      #7a0012;
+      --ember:      #ff4d1a;
+      --pale:       #e8d5c4;
+      --ash:        #a89888;
+      --dark:       #0a0608;
+      --charcoal:   #130c0e;
+      --nav-w:      260px;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: var(--dark);
+      color: var(--pale);
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    /* ── NOISE OVERLAY ───────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+    }
+
+    /* ── LEFT NAV ────────────────────────────────── */
+    nav {
+      position: fixed; left: 0; top: 0; bottom: 0;
+      width: var(--nav-w);
+      z-index: 100;
+      display: flex; flex-direction: column;
+      padding: 48px 0 48px 40px;
+      border-right: 1px solid rgba(192,24,42,0.18);
+      background: linear-gradient(to right, rgba(10,6,8,0.97) 70%, rgba(10,6,8,0.0));
+    }
+
+    .nav-logo {
+      margin-bottom: 60px;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .nav-logo-mark {
+      width: 28px; height: 28px;
+      border: 1.5px solid var(--crimson);
+      transform: rotate(45deg);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-mark::after {
+      content: '';
+      position: absolute; inset: 5px;
+      background: var(--crimson);
+      transform: rotate(0deg);
+    }
+
+    .nav-logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.28em;
+      color: var(--ash);
+      line-height: 1.2;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex; flex-direction: column;
+      gap: 4px;
+    }
+
+    nav ul li a {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.12em;
+      color: var(--ash);
+      text-decoration: none;
+      padding: 6px 0;
+      position: relative;
+      transition: color 0.25s;
+    }
+
+    nav ul li a::before {
+      content: '';
+      position: absolute; left: -40px; top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 1px;
+      background: var(--crimson);
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover { color: var(--pale); }
+    nav ul li a:hover::before { width: 30px; }
+
+    nav ul li.active a {
+      color: var(--pale);
+    }
+    nav ul li.active a::before { width: 30px; background: var(--ember); }
+
+    .nav-bottom {
+      margin-top: auto;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: rgba(168,152,136,0.35);
+      text-transform: uppercase;
+    }
+
+    /* ── MAIN STAGE ──────────────────────────────── */
+    main {
+      position: fixed; inset: 0;
+      margin-left: var(--nav-w);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+
+    /* ── BACKGROUND GRAPHIC ──────────────────────── */
+    .bg-layer {
+      position: absolute; inset: 0;
+      z-index: 0;
+    }
+
+    /* Radial glow */
+    .bg-layer::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70vw; height: 70vw;
+      background: radial-gradient(ellipse, rgba(122,0,18,0.35) 0%, rgba(192,24,42,0.08) 40%, transparent 70%);
+      animation: breathe 6s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.9; }
+      50%      { transform: translate(-50%,-50%) scale(1.08); opacity: 1; }
+    }
+
+    /* Moon circle */
+    .moon {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 38% 38%,
+        #1a0508 0%, #0d0204 60%, #050101 100%);
+      box-shadow:
+        0 0 0 1px rgba(192,24,42,0.25),
+        0 0 60px rgba(192,24,42,0.15),
+        0 0 120px rgba(192,24,42,0.08);
+      overflow: hidden;
+    }
+
+    /* Moon surface texture rings */
+    .moon::before {
+      content: '';
+      position: absolute; inset: -20px;
+      background:
+        repeating-radial-gradient(circle at 38% 38%,
+          transparent 0px, transparent 28px,
+          rgba(192,24,42,0.03) 28px, rgba(192,24,42,0.03) 29px);
+    }
+
+    /* Moon crack / blood streak */
+    .moon::after {
+      content: '';
+      position: absolute;
+      top: 10%; left: 35%;
+      width: 2px; height: 65%;
+      background: linear-gradient(to bottom,
+        transparent, rgba(192,24,42,0.6) 40%, rgba(255,77,26,0.4) 70%, transparent);
+      transform: rotate(12deg);
+      filter: blur(1px);
+    }
+
+    /* Orbit ring */
+    .orbit {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(-18deg);
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      border: 1px solid rgba(192,24,42,0.18);
+      animation: orbit-spin 40s linear infinite;
+    }
+
+    .orbit::before {
+      content: '';
+      position: absolute;
+      top: -3px; left: 50%;
+      transform: translateX(-50%);
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--ember);
+      box-shadow: 0 0 12px var(--ember), 0 0 24px rgba(255,77,26,0.5);
+    }
+
+    @keyframes orbit-spin {
+      from { transform: translate(-50%,-50%) rotate(-18deg); }
+      to   { transform: translate(-50%,-50%) rotate(342deg); }
+    }
+
+    /* Outer orbit ring 2 */
+    .orbit-2 {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(60deg);
+      width: 520px; height: 260px;
+      border-radius: 50%;
+      border: 1px solid rgba(192,24,42,0.08);
+      animation: orbit-spin 65s linear infinite reverse;
+    }
+
+    /* Scattered blood particles */
+    .particles {
+      position: absolute; inset: 0; z-index: 1;
+      pointer-events: none;
+    }
+
+    .p {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--crimson);
+      animation: float-p var(--dur) ease-in-out infinite;
+      opacity: var(--op);
+    }
+
+    @keyframes float-p {
+      0%,100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(var(--dy)) scale(var(--sc)); }
+    }
+
+    /* ── BAND NAME ───────────────────────────────── */
+    .center-text {
+      position: relative; z-index: 10;
+      text-align: center;
+      user-select: none;
+    }
+
+    .eyebrow {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.5em;
+      color: var(--crimson);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      animation: fadein 2s ease forwards;
+      opacity: 0;
+      animation-delay: 0.4s;
+    }
+
+    .band-name {
+      font-family: 'Cinzel Decorative', serif;
+      font-weight: 900;
+      font-size: clamp(36px, 5.5vw, 76px);
+      line-height: 1.05;
+      letter-spacing: 0.06em;
+      color: var(--pale);
+      text-shadow:
+        0 0 40px rgba(192,24,42,0.5),
+        0 0 80px rgba(192,24,42,0.2),
+        2px 2px 0px rgba(0,0,0,0.8);
+      animation: fadein 2s ease forwards;
+      opacity: 0;
+      animation-delay: 0.8s;
+    }
+
+    .band-name span {
+      display: block;
+      color: var(--crimson);
+      text-shadow:
+        0 0 30px rgba(255,77,26,0.6),
+        0 0 60px rgba(192,24,42,0.4);
+    }
+
+    .tagline {
+      margin-top: 22px;
+      font-size: 12px;
+      letter-spacing: 0.35em;
+      color: var(--ash);
+      text-transform: uppercase;
+      font-weight: 300;
+      animation: fadein 2s ease forwards;
+      opacity: 0;
+      animation-delay: 1.4s;
+    }
+
+    .divider {
+      margin: 18px auto;
+      width: 60px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--crimson), transparent);
+      animation: fadein 2s ease forwards;
+      opacity: 0;
+      animation-delay: 1.1s;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SOCIAL HINT BOTTOM RIGHT ────────────────── */
+    .social-hint {
+      position: fixed;
+      bottom: 36px; right: 40px;
+      z-index: 100;
+      display: flex; flex-direction: column;
+      align-items: flex-end;
+      gap: 14px;
+      animation: fadein 2s ease forwards;
+      opacity: 0;
+      animation-delay: 2s;
+    }
+
+    .social-label {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: rgba(168,152,136,0.4);
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      margin-left: 4px;
+    }
+
+    .social-links {
+      display: flex; flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .social-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, transparent, rgba(192,24,42,0.5));
+    }
+
+    .social-icon {
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(192,24,42,0.3);
+      border-radius: 2px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      color: var(--ash);
+    }
+
+    .social-icon:hover {
+      border-color: var(--crimson);
+      background: rgba(192,24,42,0.12);
+      color: var(--pale);
+    }
+
+    .social-icon svg {
+      width: 14px; height: 14px;
+      fill: currentColor;
+    }
+
+    /* ── SCROLL HINT ─────────────────────────────── */
+    .scroll-hint {
+      position: fixed;
+      bottom: 36px; left: 50%;
+      transform: translateX(-50%) translateX(calc(var(--nav-w)/2));
+      z-index: 100;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+      animation: fadein 2s ease forwards;
+      opacity: 0;
+      animation-delay: 2.5s;
+    }
+
+    .scroll-hint span {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: rgba(168,152,136,0.35);
+      text-transform: uppercase;
+    }
+
+    .scroll-mouse {
+      width: 18px; height: 28px;
+      border: 1px solid rgba(192,24,42,0.3);
+      border-radius: 10px;
+      display: flex; align-items: flex-start;
+      justify-content: center;
+      padding-top: 5px;
+    }
+
+    .scroll-mouse::after {
+      content: '';
+      width: 2px; height: 6px;
+      background: var(--crimson);
+      border-radius: 2px;
+      animation: scroll-bob 1.6s ease-in-out infinite;
+    }
+
+    @keyframes scroll-bob {
+      0%,100% { transform: translateY(0); opacity: 1; }
+      80%      { transform: translateY(8px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LEFT NAV -->
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-logo-mark"></div>
+      <div class="nav-logo-text">CRIMSON<br>MOONFLARE</div>
+    </div>
+    <ul>
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Who We Are</a></li>
+      <li><a href="#">Live</a></li>
+      <li><a href="#">Music</a></li>
+      <li><a href="#">News</a></li>
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="nav-bottom">© 2025 Crimson Moonflare</div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- BG GRAPHICS -->
+    <div class="bg-layer">
+      <div class="moon"></div>
+      <div class="orbit"></div>
+      <div class="orbit-2"></div>
+    </div>
+
+    <!-- PARTICLES -->
+    <div class="particles">
+      <div class="p" style="width:3px;height:3px;top:22%;left:60%;--op:0.6;--dur:7s;--dy:-18px;--sc:1.3"></div>
+      <div class="p" style="width:2px;height:2px;top:68%;left:72%;--op:0.4;--dur:9s;--dy:-12px;--sc:0.8"></div>
+      <div class="p" style="width:4px;height:4px;top:38%;left:80%;--op:0.3;--dur:11s;--dy:20px;--sc:1.1"></div>
+      <div class="p" style="width:2px;height:2px;top:75%;left:55%;--op:0.5;--dur:8s;--dy:-16px;--sc:1.2"></div>
+      <div class="p" style="width:3px;height:3px;top:18%;left:75%;--op:0.35;--dur:13s;--dy:14px;--sc:0.9"></div>
+      <div class="p" style="width:2px;height:2px;top:55%;left:88%;--op:0.4;--dur:10s;--dy:-10px;--sc:1.0"></div>
+      <div class="p" style="width:5px;height:5px;top:80%;left:65%;--op:0.2;--dur:15s;--dy:-22px;--sc:0.7"></div>
+    </div>
+
+    <!-- BAND NAME -->
+    <div class="center-text">
+      <div class="eyebrow">Est. 2024 &nbsp;·&nbsp; Metal</div>
+      <h1 class="band-name">
+        Crimson<br><span>Moonflare</span>
+      </h1>
+      <div class="divider"></div>
+      <p class="tagline">Burn. Shatter. Ascend.</p>
+    </div>
+
+  </main>
+
+  <!-- SOCIAL HINT (bottom right) -->
+  <div class="social-hint">
+    <div class="social-links">
+      <!-- Instagram -->
+      <a href="#" class="social-icon" title="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <!-- TikTok -->
+      <a href="#" class="social-icon" title="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+      <!-- YouTube -->
+      <a href="#" class="social-icon" title="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <!-- Spotify -->
+      <a href="#" class="social-icon" title="Spotify">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+      <!-- Facebook -->
+      <a href="#" class="social-icon" title="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+    <div class="social-line"></div>
+    <span class="social-label">Follow</span>
+  </div>
+
+  <!-- SCROLL HINT -->
+  <div class="scroll-hint">
+    <div class="scroll-mouse"></div>
+    <span>Scroll</span>
+  </div>
+
+</body>
+</html>

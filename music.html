@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crimson Moonflare – Music</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel+Decorative:wght@700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --crimson:    #c0182a;
+      --blood:      #7a0012;
+      --ember:      #ff4d1a;
+      --pale:       #e8d5c4;
+      --ash:        #a89888;
+      --dark:       #0a0608;
+      --charcoal:   #130c0e;
+      --nav-w:      260px;
+    }
+
+    html, body {
+      width: 100%; min-height: 100%;
+      background: var(--dark);
+      color: var(--pale);
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    /* ── NOISE OVERLAY ───────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+    }
+
+    /* ── LEFT NAV ────────────────────────────────── */
+    nav {
+      position: fixed; left: 0; top: 0; bottom: 0;
+      width: var(--nav-w);
+      z-index: 100;
+      display: flex; flex-direction: column;
+      padding: 48px 0 48px 40px;
+      border-right: 1px solid rgba(192,24,42,0.18);
+      background: linear-gradient(to right, rgba(10,6,8,0.97) 70%, rgba(10,6,8,0.0));
+    }
+
+    .nav-logo {
+      margin-bottom: 60px;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .nav-logo-mark {
+      width: 28px; height: 28px;
+      border: 1.5px solid var(--crimson);
+      transform: rotate(45deg);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-mark::after {
+      content: '';
+      position: absolute; inset: 5px;
+      background: var(--crimson);
+    }
+
+    .nav-logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.28em;
+      color: var(--ash);
+      line-height: 1.2;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex; flex-direction: column;
+      gap: 4px;
+    }
+
+    nav ul li a {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.12em;
+      color: var(--ash);
+      text-decoration: none;
+      padding: 6px 0;
+      position: relative;
+      transition: color 0.25s;
+    }
+
+    nav ul li a::before {
+      content: '';
+      position: absolute; left: -40px; top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 1px;
+      background: var(--crimson);
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover { color: var(--pale); }
+    nav ul li a:hover::before { width: 30px; }
+
+    nav ul li.active a { color: var(--pale); }
+    nav ul li.active a::before { width: 30px; background: var(--ember); }
+
+    .nav-bottom {
+      margin-top: auto;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: rgba(168,152,136,0.35);
+      text-transform: uppercase;
+    }
+
+    /* ── MAIN CONTENT ────────────────────────────── */
+    main {
+      margin-left: var(--nav-w);
+      position: relative;
+      z-index: 1;
+      padding: 80px 80px 100px 80px;
+      max-width: 1200px;
+    }
+
+    /* ── PAGE HEADER ─────────────────────────────── */
+    .page-header {
+      margin-bottom: 80px;
+    }
+
+    .page-eyebrow {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.5em;
+      color: var(--crimson);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .page-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-weight: 900;
+      font-size: clamp(32px, 4vw, 60px);
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      color: var(--pale);
+      text-shadow: 0 0 40px rgba(192,24,42,0.35), 2px 2px 0px rgba(0,0,0,0.8);
+    }
+
+    .page-title span {
+      color: var(--crimson);
+      text-shadow: 0 0 30px rgba(255,77,26,0.5), 0 0 60px rgba(192,24,42,0.3);
+    }
+
+    .page-divider {
+      margin-top: 20px;
+      width: 60px; height: 1px;
+      background: linear-gradient(to right, var(--crimson), transparent);
+    }
+
+    /* ── SECTION LABEL ───────────────────────────── */
+    .section-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--crimson);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      display: flex; align-items: center; gap: 14px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: rgba(192,24,42,0.4);
+    }
+
+    /* ── FEATURED RELEASE ────────────────────────── */
+    .featured-release {
+      margin-bottom: 90px;
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .featured-cover {
+      aspect-ratio: 1/1;
+      background: var(--charcoal);
+      border: 1px solid rgba(192,24,42,0.25);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-cover::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(135deg, rgba(192,24,42,0.12) 0%, transparent 50%),
+        linear-gradient(315deg, rgba(122,0,18,0.1) 0%, transparent 50%);
+    }
+
+    /* Decorative cross-hatch on cover placeholder */
+    .featured-cover::after {
+      content: '';
+      position: absolute; inset: 20px;
+      border: 1px solid rgba(192,24,42,0.1);
+    }
+
+    .cover-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      color: rgba(168,152,136,0.3);
+      text-transform: uppercase;
+      position: relative; z-index: 1;
+    }
+
+    .placeholder-icon {
+      width: 52px; height: 52px;
+      border: 1px solid rgba(192,24,42,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+    }
+
+    .placeholder-icon svg {
+      width: 22px; height: 22px;
+      fill: none;
+      stroke: rgba(192,24,42,0.5);
+      stroke-width: 1.5;
+    }
+
+    .featured-info {
+      padding-top: 8px;
+    }
+
+    .release-type-badge {
+      display: inline-block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      color: var(--crimson);
+      border: 1px solid rgba(192,24,42,0.4);
+      padding: 4px 12px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .release-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-weight: 900;
+      font-size: clamp(24px, 3vw, 42px);
+      color: var(--pale);
+      line-height: 1.1;
+      margin-bottom: 8px;
+      text-shadow: 0 0 30px rgba(192,24,42,0.3);
+    }
+
+    .release-meta {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.25em;
+      color: var(--ash);
+      margin-bottom: 32px;
+    }
+
+    .release-desc {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--ash);
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+
+    /* ── TRACK LIST ──────────────────────────────── */
+    .tracklist {
+      list-style: none;
+      border-top: 1px solid rgba(192,24,42,0.12);
+    }
+
+    .track-item {
+      display: grid;
+      grid-template-columns: 32px 1fr auto auto;
+      gap: 16px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(192,24,42,0.08);
+      cursor: default;
+    }
+
+    .track-item:hover {
+      background: rgba(192,24,42,0.04);
+      margin: 0 -12px;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .track-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: rgba(168,152,136,0.3);
+      text-align: right;
+    }
+
+    .track-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--pale);
+      letter-spacing: 0.02em;
+    }
+
+    .track-tag {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 8px;
+      letter-spacing: 0.3em;
+      color: var(--crimson);
+      border: 1px solid rgba(192,24,42,0.3);
+      padding: 2px 8px;
+      text-transform: uppercase;
+    }
+
+    .track-duration {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(168,152,136,0.4);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── STREAMING BUTTONS ───────────────────────── */
+    .stream-row {
+      display: flex; gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .stream-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 18px;
+      border: 1px solid rgba(192,24,42,0.3);
+      text-decoration: none;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--ash);
+      text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .stream-btn:hover {
+      border-color: var(--crimson);
+      color: var(--pale);
+      background: rgba(192,24,42,0.1);
+    }
+
+    .stream-btn svg {
+      width: 14px; height: 14px;
+      fill: currentColor;
+    }
+
+    /* ── DISCOGRAPHY GRID ────────────────────────── */
+    .discography-section {
+      margin-bottom: 90px;
+    }
+
+    .discography-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .release-card {
+      position: relative;
+      cursor: default;
+    }
+
+    .release-card-cover {
+      aspect-ratio: 1/1;
+      background: var(--charcoal);
+      border: 1px solid rgba(192,24,42,0.12);
+      margin-bottom: 16px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s;
+    }
+
+    .release-card:hover .release-card-cover {
+      border-color: rgba(192,24,42,0.35);
+    }
+
+    .release-card-cover::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(192,24,42,0.08) 0%, transparent 60%);
+    }
+
+    .release-card-cover .cover-label {
+      font-size: 9px;
+    }
+
+    .release-card-cover .placeholder-icon {
+      width: 40px; height: 40px;
+    }
+
+    .release-card-cover .placeholder-icon svg {
+      width: 18px; height: 18px;
+    }
+
+    /* Play overlay hint on hover */
+    .play-hint {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(10,6,8,0.6);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .release-card:hover .play-hint { opacity: 1; }
+
+    .play-circle {
+      width: 52px; height: 52px;
+      border: 1px solid rgba(232,213,196,0.6);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .play-circle svg {
+      width: 18px; height: 18px;
+      fill: var(--pale);
+      margin-left: 3px;
+    }
+
+    .release-card-type {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      color: var(--crimson);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .release-card-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.08em;
+      color: var(--pale);
+      margin-bottom: 4px;
+    }
+
+    .release-card-meta {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(168,152,136,0.5);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── FEATURED SINGLE STRIP ───────────────────── */
+    .singles-section {
+      margin-bottom: 90px;
+    }
+
+    .singles-list {
+      display: flex; flex-direction: column;
+      gap: 2px;
+      background: rgba(192,24,42,0.08);
+    }
+
+    .single-row {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      background: var(--dark);
+      padding: 16px 24px;
+      cursor: default;
+      transition: background 0.2s;
+    }
+
+    .single-row:hover {
+      background: var(--charcoal);
+    }
+
+    .single-thumb {
+      aspect-ratio: 1/1;
+      background: var(--charcoal);
+      border: 1px solid rgba(192,24,42,0.15);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .single-thumb svg {
+      width: 20px; height: 20px;
+      fill: none;
+      stroke: rgba(192,24,42,0.3);
+      stroke-width: 1;
+    }
+
+    .single-info-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      color: var(--pale);
+      margin-bottom: 4px;
+    }
+
+    .single-info-meta {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(168,152,136,0.5);
+    }
+
+    .single-date {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(168,152,136,0.3);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ── PLAYER EMBED PLACEHOLDER ────────────────── */
+    .player-section {
+      margin-bottom: 60px;
+    }
+
+    .player-placeholder {
+      background: var(--charcoal);
+      border: 1px solid rgba(192,24,42,0.15);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .player-artwork {
+      width: 80px; height: 80px;
+      flex-shrink: 0;
+      background: rgba(192,24,42,0.1);
+      border: 1px solid rgba(192,24,42,0.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .player-artwork svg {
+      width: 28px; height: 28px;
+      fill: none;
+      stroke: rgba(192,24,42,0.5);
+      stroke-width: 1.5;
+    }
+
+    .player-info {
+      flex: 1;
+    }
+
+    .player-track-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      color: var(--pale);
+      margin-bottom: 4px;
+    }
+
+    .player-artist {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--ash);
+      letter-spacing: 0.1em;
+    }
+
+    .player-bar {
+      flex: 1;
+      height: 3px;
+      background: rgba(192,24,42,0.15);
+      border-radius: 2px;
+      position: relative;
+      margin: 16px 0 8px;
+    }
+
+    .player-bar::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 35%;
+      background: var(--crimson);
+      border-radius: 2px;
+    }
+
+    .player-times {
+      display: flex; justify-content: space-between;
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(168,152,136,0.35);
+      letter-spacing: 0.05em;
+    }
+
+    .player-controls {
+      display: flex; align-items: center; gap: 20px;
+    }
+
+    .player-btn {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ash);
+    }
+
+    .player-btn.play {
+      width: 48px; height: 48px;
+      border: 1px solid rgba(192,24,42,0.4);
+      border-radius: 50%;
+      color: var(--pale);
+    }
+
+    .player-btn svg {
+      width: 16px; height: 16px;
+      fill: currentColor;
+    }
+
+    .player-btn.play svg {
+      width: 18px; height: 18px;
+      margin-left: 2px;
+    }
+
+    .player-note {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: rgba(168,152,136,0.2);
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* ── GLOW ACCENTS ────────────────────────────── */
+    .glow-accent {
+      position: fixed;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(122,0,18,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-accent.top-right { top: -100px; right: 0; }
+    .glow-accent.bottom-left { bottom: -100px; left: var(--nav-w); }
+  </style>
+</head>
+<body>
+
+  <div class="glow-accent top-right"></div>
+  <div class="glow-accent bottom-left"></div>
+
+  <!-- LEFT NAV -->
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-logo-mark"></div>
+      <div class="nav-logo-text">CRIMSON<br>MOONFLARE</div>
+    </div>
+    <ul>
+      <li><a href="crimson-moonflare.html">Home</a></li>
+      <li><a href="who-we-are.html">Who We Are</a></li>
+      <li><a href="#">Live</a></li>
+      <li class="active"><a href="music.html">Music</a></li>
+      <li><a href="#">News</a></li>
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="nav-bottom">© 2025 Crimson Moonflare</div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <div class="page-eyebrow">Discography &nbsp;·&nbsp; Releases</div>
+      <h1 class="page-title"><span>Music</span></h1>
+      <div class="page-divider"></div>
+    </div>
+
+    <!-- FEATURED / LATEST RELEASE -->
+    <div class="section-label">Latest Release</div>
+    <div class="featured-release">
+
+      <div class="featured-cover">
+        <div class="placeholder-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <span class="cover-label">Album Artwork</span>
+      </div>
+
+      <div class="featured-info">
+        <span class="release-type-badge">EP · 2025</span>
+        <h2 class="release-title">Vein &amp; Voltage</h2>
+        <div class="release-meta">5 Tracks &nbsp;·&nbsp; 18 min &nbsp;·&nbsp; Metalcore / Alternative</div>
+        <p class="release-desc">
+          The debut EP. Five tracks that outline exactly what Crimson Moonflare is —
+          loud, honest, and unafraid of being uncomfortable. Recorded in a basement,
+          mixed like it belongs in an arena.
+        </p>
+
+        <!-- TRACK LIST -->
+        <ul class="tracklist">
+          <li class="track-item">
+            <span class="track-num">01</span>
+            <span class="track-title">Ignite the Wound</span>
+            <span class="track-tag">Single</span>
+            <span class="track-duration">3:42</span>
+          </li>
+          <li class="track-item">
+            <span class="track-num">02</span>
+            <span class="track-title">Scarlet Static</span>
+            <span></span>
+            <span class="track-duration">4:11</span>
+          </li>
+          <li class="track-item">
+            <span class="track-num">03</span>
+            <span class="track-title">Below the Signal</span>
+            <span></span>
+            <span class="track-duration">3:58</span>
+          </li>
+          <li class="track-item">
+            <span class="track-num">04</span>
+            <span class="track-title">Glass Meridian</span>
+            <span></span>
+            <span class="track-duration">3:27</span>
+          </li>
+          <li class="track-item">
+            <span class="track-num">05</span>
+            <span class="track-title">The Last Weight</span>
+            <span></span>
+            <span class="track-duration">3:09</span>
+          </li>
+        </ul>
+
+        <!-- STREAMING LINKS -->
+        <div class="stream-row">
+          <a href="#" class="stream-btn">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            Spotify
+          </a>
+          <a href="#" class="stream-btn">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTube
+          </a>
+          <a href="#" class="stream-btn">
+            <svg viewBox="0 0 24 24"><path d="M11.56 8.87V17h4.35l1.12 2.57H4v-2.6l1.06-.95c1.09-.96 1.46-1.56 1.46-2.62v-3.46L3.6 8.87 4 5.13h16l.4 3.74-2.91 1.07v3.46c0 1.06.37 1.65 1.46 2.62l1.06.95v2.6h-4.28L16.44 17V8.87l-2.43-.9L11.56 8.87z"/></svg>
+            Apple Music
+          </a>
+          <a href="#" class="stream-btn">
+            <svg viewBox="0 0 24 24"><path d="M1.175 12.225C.692 12.225.308 11.842.308 11.358V5.4c0-.487.385-.87.867-.87h2.808c1.317 0 2.425.953 2.425 2.213 0 .645-.32 1.237-.838 1.653.744.39 1.2 1.072 1.2 1.862 0 1.314-1.1 2.245-2.426 2.245H1.175zm2.808-8.25H1.65v2.36h2.333c.5 0 .899-.425.899-.916 0-.488-.4-.9-.9-.9zm-2.333 3.74v2.467h2.808c.51 0 .908-.428.908-.926 0-.5-.398-.927-.908-.927H1.65v-.614zM8.6 5.84c-.504 0-.91-.406-.91-.91V3.82c0-.504.405-.91.91-.91.505 0 .91.406.91.91v1.11c0 .504-.405.91-.91.91zm0 6.385c-.504 0-.91-.405-.91-.91V7.227c0-.504.405-.91.91-.91.505 0 .91.406.91.91v4.09c0 .505-.405.91-.91.91zm12.135.002c-1.857 0-3.36-1.504-3.36-3.36s1.503-3.36 3.36-3.36c.956 0 1.826.392 2.447 1.022l-.774.774c-.43-.43-1.02-.686-1.673-.686-1.303 0-2.36 1.056-2.36 2.36 0 1.303 1.057 2.36 2.36 2.36.652 0 1.244-.256 1.673-.686l.774.774c-.62.63-1.49 1.022-2.447 1.022zM13.793 5.84c-.505 0-.91-.406-.91-.91V3.82c0-.504.405-.91.91-.91.505 0 .91.406.91.91v1.11c0 .504-.405.91-.91.91zm0 6.385c-.505 0-.91-.405-.91-.91V7.227c0-.504.405-.91.91-.91.505 0 .91.406.91.91v4.09c0 .505-.405.91-.91.91z"/></svg>
+            Bandcamp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- INLINE PLAYER PLACEHOLDER -->
+    <div class="player-section">
+      <div class="section-label">Now Playing</div>
+      <div class="player-placeholder">
+        <div class="player-artwork">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <div class="player-info" style="flex:1;">
+          <div class="player-track-name">Ignite the Wound</div>
+          <div class="player-artist">Crimson Moonflare · Vein &amp; Voltage</div>
+          <div class="player-bar"></div>
+          <div class="player-times"><span>1:18</span><span>3:42</span></div>
+        </div>
+        <div class="player-controls">
+          <div class="player-btn">
+            <svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+          </div>
+          <div class="player-btn play">
+            <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+          </div>
+          <div class="player-btn">
+            <svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="player-note">Spotify embed will appear here</div>
+    </div>
+
+    <!-- DISCOGRAPHY GRID -->
+    <div class="discography-section">
+      <div class="section-label">All Releases</div>
+
+      <div class="discography-grid">
+
+        <div class="release-card">
+          <div class="release-card-cover">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <span class="cover-label">Artwork</span>
+            <div class="play-hint">
+              <div class="play-circle">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="release-card-type">EP</div>
+          <div class="release-card-name">Vein &amp; Voltage</div>
+          <div class="release-card-meta">2025 &nbsp;·&nbsp; 5 tracks</div>
+        </div>
+
+        <div class="release-card">
+          <div class="release-card-cover">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <span class="cover-label">Artwork</span>
+            <div class="play-hint">
+              <div class="play-circle">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="release-card-type">Single</div>
+          <div class="release-card-name">Ignite the Wound</div>
+          <div class="release-card-meta">2024 &nbsp;·&nbsp; 1 track</div>
+        </div>
+
+        <div class="release-card">
+          <div class="release-card-cover">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <span class="cover-label">Artwork</span>
+            <div class="play-hint">
+              <div class="play-circle">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="release-card-type">Single</div>
+          <div class="release-card-name">Hollow Signal</div>
+          <div class="release-card-meta">2024 &nbsp;·&nbsp; 1 track</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SINGLES LIST -->
+    <div class="singles-section">
+      <div class="section-label">Singles &amp; Features</div>
+
+      <div class="singles-list">
+
+        <div class="single-row">
+          <div class="single-thumb">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <div>
+            <div class="single-info-title">Ignite the Wound</div>
+            <div class="single-info-meta">Debut single &nbsp;·&nbsp; 3:42</div>
+          </div>
+          <div class="single-date">Nov 2024</div>
+        </div>
+
+        <div class="single-row">
+          <div class="single-thumb">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <div>
+            <div class="single-info-title">Hollow Signal</div>
+            <div class="single-info-meta">Single &nbsp;·&nbsp; 4:03</div>
+          </div>
+          <div class="single-date">Dec 2024</div>
+        </div>
+
+        <div class="single-row">
+          <div class="single-thumb">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <div>
+            <div class="single-info-title">Scarlet Static (Early Version)</div>
+            <div class="single-info-meta">Pre-release single &nbsp;·&nbsp; 4:08</div>
+          </div>
+          <div class="single-date">Mar 2025</div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
