@@ -471,6 +471,59 @@
 
     .mini-ctrl.play svg { width: 10px; height: 10px; margin-left: 1px; }
 
+    /* ── TOUR STRIP ──────────────────────────────── */
+    .tour-strip {
+      position: fixed;
+      top: 0; left: var(--nav-w); right: 0;
+      z-index: 200;
+      height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 20px;
+      background: rgba(10,6,8,0.92);
+      border-bottom: 1px solid rgba(192,24,42,0.22);
+      animation: fadein 1.5s ease forwards;
+      opacity: 0;
+      animation-delay: 0.3s;
+    }
+
+    .tour-strip-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--ember);
+      box-shadow: 0 0 6px var(--ember);
+      flex-shrink: 0;
+    }
+
+    .tour-strip-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--ash);
+      text-transform: uppercase;
+    }
+
+    .tour-strip-text strong {
+      color: var(--pale);
+      letter-spacing: 0.28em;
+    }
+
+    .tour-strip-link {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--crimson);
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(192,24,42,0.35);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .tour-strip-link:hover {
+      color: var(--ember);
+      border-color: var(--ember);
+    }
+
   </style>
 </head>
 <body>
@@ -519,6 +572,14 @@
 
     <div class="nav-bottom">© 2025 Crimson Moonflare</div>
   </nav>
+
+  <!-- TOUR STRIP -->
+  <div class="tour-strip">
+    <div class="tour-strip-dot"></div>
+    <div class="tour-strip-text"><strong>European Tour 2026</strong> &nbsp;·&nbsp; Jun 14 – Jul 2 &nbsp;·&nbsp; 12 Cities</div>
+    <a href="#" class="tour-strip-link">Tickets &rarr;</a>
+    <div class="tour-strip-dot"></div>
+  </div>
 
   <!-- MAIN CONTENT -->
   <main>
