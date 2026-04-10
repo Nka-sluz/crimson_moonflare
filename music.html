@@ -107,7 +107,6 @@
     nav ul li.active a::before { width: 30px; background: var(--ember); }
 
     .nav-bottom {
-      margin-top: auto;
       font-size: 10px;
       letter-spacing: 0.2em;
       color: rgba(168,152,136,0.55);
@@ -653,6 +652,109 @@
 
     .glow-accent.top-right { top: -100px; right: 0; }
     .glow-accent.bottom-left { bottom: -100px; left: var(--nav-w); }
+
+    /* ── MINI PLAYER ─────────────────────────────── */
+    .mini-player {
+      margin-top: auto;
+      margin-bottom: 24px;
+      padding-right: 40px;
+      border-top: 1px solid rgba(192,24,42,0.12);
+      padding-top: 20px;
+    }
+
+    .mini-player-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      color: var(--crimson);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .mini-player-track {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .mini-player-art {
+      width: 36px; height: 36px;
+      flex-shrink: 0;
+      background: var(--charcoal);
+      border: 1px solid rgba(192,24,42,0.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .mini-player-art svg {
+      width: 14px; height: 14px;
+      fill: none;
+      stroke: rgba(192,24,42,0.4);
+      stroke-width: 1.5;
+    }
+
+    .mini-player-info { flex: 1; min-width: 0; }
+
+    .mini-player-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      color: var(--pale);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+    }
+
+    .mini-player-sub {
+      font-size: 10px;
+      font-weight: 300;
+      color: rgba(168,152,136,0.55);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: 0.04em;
+    }
+
+    .mini-player-bar {
+      height: 2px;
+      background: rgba(192,24,42,0.15);
+      border-radius: 2px;
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .mini-player-bar::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 35%;
+      background: var(--crimson);
+      border-radius: 2px;
+    }
+
+    .mini-player-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mini-ctrl {
+      color: rgba(168,152,136,0.5);
+      display: flex; align-items: center; justify-content: center;
+      cursor: default;
+    }
+
+    .mini-ctrl svg { width: 12px; height: 12px; fill: currentColor; }
+
+    .mini-ctrl.play {
+      width: 28px; height: 28px;
+      border: 1px solid rgba(192,24,42,0.35);
+      border-radius: 50%;
+      color: var(--pale);
+    }
+
+    .mini-ctrl.play svg { width: 10px; height: 10px; margin-left: 1px; }
   </style>
 </head>
 <body>
@@ -675,6 +777,33 @@
       <li><a href="#">Shop</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
+
+    <!-- MINI PLAYER -->
+    <div class="mini-player">
+      <div class="mini-player-label">Now Playing</div>
+      <div class="mini-player-track">
+        <div class="mini-player-art">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <div class="mini-player-info">
+          <div class="mini-player-title">Ignite the Wound</div>
+          <div class="mini-player-sub">Vein &amp; Voltage</div>
+        </div>
+      </div>
+      <div class="mini-player-bar"></div>
+      <div class="mini-player-controls">
+        <div class="mini-ctrl">
+          <svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+        </div>
+        <div class="mini-ctrl play">
+          <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </div>
+        <div class="mini-ctrl">
+          <svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+        </div>
+      </div>
+    </div>
+
     <div class="nav-bottom">© 2025 Crimson Moonflare</div>
   </nav>
 
