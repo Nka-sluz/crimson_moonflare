@@ -369,47 +369,6 @@
       fill: currentColor;
     }
 
-    /* ── SCROLL HINT ─────────────────────────────── */
-    .scroll-hint {
-      position: fixed;
-      bottom: 36px; left: 50%;
-      transform: translateX(-50%) translateX(calc(var(--nav-w)/2));
-      z-index: 100;
-      display: flex; flex-direction: column;
-      align-items: center; gap: 8px;
-      animation: fadein 2s ease forwards;
-      opacity: 0;
-      animation-delay: 2.5s;
-    }
-
-    .scroll-hint span {
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      color: rgba(168,152,136,0.55);
-      text-transform: uppercase;
-    }
-
-    .scroll-mouse {
-      width: 18px; height: 28px;
-      border: 1px solid rgba(192,24,42,0.3);
-      border-radius: 10px;
-      display: flex; align-items: flex-start;
-      justify-content: center;
-      padding-top: 5px;
-    }
-
-    .scroll-mouse::after {
-      content: '';
-      width: 2px; height: 6px;
-      background: var(--crimson);
-      border-radius: 2px;
-      animation: scroll-bob 1.6s ease-in-out infinite;
-    }
-
-    @keyframes scroll-bob {
-      0%,100% { transform: translateY(0); opacity: 1; }
-      80%      { transform: translateY(8px); opacity: 0; }
-    }
   </style>
 </head>
 <body>
@@ -493,11 +452,6 @@
     <span class="social-label">Follow</span>
   </div>
 
-  <!-- SCROLL HINT -->
-  <div class="scroll-hint">
-    <div class="scroll-mouse"></div>
-    <span>Scroll</span>
-  </div>
 
 </body>
 </html>
