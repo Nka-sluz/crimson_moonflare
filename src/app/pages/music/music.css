@@ -1,0 +1,393 @@
+/* ── APP SHELL ── */
+main {
+  position: fixed;
+  inset: 0;
+  margin-left: var(--nav-w);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── PAGE HEADER ── */
+.page-header {
+  padding: 36px 60px 28px;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(192,24,42,0.1);
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.page-eyebrow {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.5em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.page-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 900;
+  font-size: clamp(28px, 3vw, 48px);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--pale);
+  text-shadow: 0 0 40px rgba(192,24,42,0.35), 2px 2px 0px rgba(0,0,0,0.8);
+}
+
+.page-title span {
+  color: var(--crimson);
+  text-shadow: 0 0 30px rgba(255,77,26,0.5), 0 0 60px rgba(192,24,42,0.3);
+}
+
+/* ── MUSIC BROWSER ── */
+.music-browser {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  overflow: hidden;
+}
+
+/* ── RELEASES SIDEBAR ── */
+.releases-sidebar {
+  border-right: 1px solid rgba(192,24,42,0.12);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  color: rgba(168,152,136,0.4);
+  text-transform: uppercase;
+  padding: 20px 28px 14px;
+  border-bottom: 1px solid rgba(192,24,42,0.07);
+  flex-shrink: 0;
+}
+
+.release-row {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 20px 14px 16px;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.release-row:hover { background: rgba(192,24,42,0.05); }
+
+.release-row.active {
+  border-left-color: var(--ember);
+  background: rgba(192,24,42,0.09);
+}
+
+.row-art {
+  aspect-ratio: 1/1;
+  background: var(--charcoal);
+  border: 1px solid rgba(192,24,42,0.15);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.row-art svg {
+  width: 16px; height: 16px;
+  fill: none;
+  stroke: rgba(192,24,42,0.3);
+  stroke-width: 1;
+}
+
+.release-row.active .row-art { border-color: rgba(192,24,42,0.35); }
+
+.row-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: var(--ash);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.release-row.active .row-name { color: var(--pale); }
+
+.row-meta {
+  font-size: 10px;
+  font-weight: 300;
+  color: rgba(168,152,136,0.5);
+  letter-spacing: 0.04em;
+}
+
+.new-badge {
+  display: inline-block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: var(--dark);
+  background: var(--ember);
+  padding: 1px 6px;
+  margin-left: 7px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+.row-type {
+  display: inline-block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: var(--crimson);
+  border: 1px solid rgba(192,24,42,0.3);
+  padding: 1px 5px;
+  margin-right: 5px;
+}
+
+/* ── DETAIL PANEL ── */
+.detail-panel {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-top {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 48px;
+  padding: 40px 60px;
+  align-items: start;
+  border-bottom: 1px solid rgba(192,24,42,0.08);
+  flex-shrink: 0;
+}
+
+.detail-cover {
+  aspect-ratio: 1/1;
+  background: var(--charcoal);
+  border: 1px solid rgba(192,24,42,0.22);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.detail-cover::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(192,24,42,0.1) 0%, transparent 55%);
+}
+
+.detail-cover::after {
+  content: '';
+  position: absolute; inset: 14px;
+  border: 1px solid rgba(192,24,42,0.08);
+}
+
+.detail-cover svg {
+  width: 28px; height: 28px;
+  fill: none;
+  stroke: rgba(192,24,42,0.4);
+  stroke-width: 1.5;
+  position: relative; z-index: 1;
+}
+
+.detail-cover-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: rgba(168,152,136,0.3);
+  text-transform: uppercase;
+  position: relative; z-index: 1;
+}
+
+.release-type-badge {
+  display: inline-block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  color: var(--crimson);
+  border: 1px solid rgba(192,24,42,0.4);
+  padding: 4px 12px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.release-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 900;
+  font-size: clamp(20px, 2.2vw, 32px);
+  color: var(--pale);
+  line-height: 1.1;
+  margin-bottom: 8px;
+  text-shadow: 0 0 30px rgba(192,24,42,0.25);
+}
+
+.release-meta {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--ash);
+  margin-bottom: 14px;
+}
+
+.release-desc {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--ash);
+  margin-bottom: 22px;
+  max-width: 420px;
+}
+
+.stream-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.stream-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 14px;
+  border: 1px solid rgba(192,24,42,0.3);
+  text-decoration: none;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--ash);
+  text-transform: uppercase;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.stream-btn:hover {
+  border-color: var(--crimson);
+  color: var(--pale);
+  background: rgba(192,24,42,0.1);
+}
+
+.stream-btn svg { width: 12px; height: 12px; fill: currentColor; }
+
+/* ── TRACKLIST ── */
+.detail-tracklist { flex: 1; }
+
+.tracklist-header {
+  display: grid;
+  grid-template-columns: 60px 28px 1fr auto auto;
+  gap: 16px;
+  padding: 10px 60px 10px 24px;
+  border-bottom: 1px solid rgba(192,24,42,0.08);
+}
+
+.tracklist-header span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: rgba(168,152,136,0.3);
+  text-transform: uppercase;
+}
+
+.tracklist-header .th-title { padding-left: 2px; }
+
+.detail-track {
+  display: grid;
+  grid-template-columns: 60px 28px 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 60px 10px 24px;
+  cursor: default;
+  transition: background 0.15s;
+  border-bottom: 1px solid rgba(192,24,42,0.04);
+}
+
+.detail-track:hover  { background: rgba(192,24,42,0.05); }
+.detail-track.playing { background: rgba(192,24,42,0.08); }
+
+.track-play {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(192,24,42,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(168,152,136,0.35);
+  flex-shrink: 0;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.track-play svg { width: 10px; height: 10px; fill: currentColor; margin-left: 2px; }
+
+.detail-track:hover .track-play {
+  border-color: rgba(192,24,42,0.55);
+  color: var(--pale);
+}
+
+.detail-track.playing .track-play {
+  border-color: var(--ember);
+  background: rgba(255,77,26,0.12);
+  color: var(--ember);
+}
+
+.track-num-wrap { display: flex; align-items: center; justify-content: flex-end; }
+
+.track-num-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: rgba(168,152,136,0.3);
+}
+
+.playing-bars {
+  display: none;
+  gap: 2px;
+  align-items: flex-end;
+  height: 14px;
+}
+
+.detail-track.playing .playing-bars { display: flex; }
+.detail-track.playing .track-num-text { display: none; }
+
+.bar {
+  width: 3px;
+  background: var(--ember);
+  border-radius: 1px;
+  animation: bar-pulse var(--spd) ease-in-out infinite alternate;
+}
+
+@keyframes bar-pulse {
+  from { height: 3px; opacity: 0.6; }
+  to   { height: 13px; opacity: 1; }
+}
+
+.track-title-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--pale);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail-track.playing .track-title-text { color: var(--ember); }
+
+.track-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: var(--crimson);
+  border: 1px solid rgba(192,24,42,0.3);
+  padding: 2px 7px;
+  white-space: nowrap;
+}
+
+.track-dur {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(168,152,136,0.55);
+  text-align: right;
+  white-space: nowrap;
+}
