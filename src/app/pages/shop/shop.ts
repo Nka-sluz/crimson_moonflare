@@ -35,7 +35,6 @@ export class ShopComponent {
     { id: 5, name: 'Vein & Voltage Poster (A2)',              price: 'CHF 18', category: 'Accessories'              },
     { id: 6, name: 'Enamel Pin Set',                          price: 'CHF 14', category: 'Accessories'              },
     { id: 7, name: 'EP + Tee Bundle',                         price: 'CHF 48', category: 'Bundle',      isNew: true  },
-    { id: 8, name: 'VIP Pack — Ticket + Hoodie + Signed Poster', price: 'CHF 110', category: 'Bundle'               },
   ];
 
   tickets: ShopTicket[] = [

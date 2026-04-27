@@ -57,16 +57,14 @@
   @if (activeTab() === 'tickets') {
     <div class="tickets-section">
       <div class="section-label">European Tour 2026</div>
-      <div class="tickets-header">
-        <span>Date</span>
-        <span>City</span>
-        <span>Venue</span>
-        <span>Price</span>
-        <span>Status</span>
-        <span></span>
-      </div>
-      @for (ticket of tickets; track ticket.city) {
-        <div class="ticket-row">
+      <div class="tickets-table">
+        <span class="th">Date</span>
+        <span class="th">City</span>
+        <span class="th">Venue</span>
+        <span class="th">Price</span>
+        <span class="th">Status</span>
+        <span class="th"></span>
+        @for (ticket of tickets; track ticket.city) {
           <div class="ticket-date">
             <span class="t-month">{{ ticket.month }}</span>
             <span class="t-day">{{ ticket.day }}</span>
@@ -82,8 +80,8 @@
           <a href="#" class="buy-btn" [class.sold]="ticket.status === 'soldout'">
             @if (ticket.status !== 'soldout') { Buy &rarr; } @else { Sold Out }
           </a>
-        </div>
-      }
+        }
+      </div>
       <div class="tickets-note">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         All prices include booking fee. Secure checkout via Stripe.

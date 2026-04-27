@@ -120,7 +120,11 @@ main {
   margin-top: 40px;
 }
 
-.product-card { background: var(--dark); }
+.product-card {
+  background: var(--dark);
+  display: flex;
+  flex-direction: column;
+}
 
 .product-card.sold-out { opacity: 0.55; }
 
@@ -160,7 +164,12 @@ main {
   text-transform: uppercase;
 }
 
-.product-body { padding: 18px 18px 22px; }
+.product-body {
+  padding: 18px 18px 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
 .product-cat {
   font-family: 'Bebas Neue', sans-serif;
@@ -178,6 +187,7 @@ main {
   color: var(--pale);
   line-height: 1.2;
   margin-bottom: 14px;
+  flex: 1;
 }
 
 .product-footer {
@@ -217,35 +227,35 @@ main {
 /* ── TICKETS SECTION ── */
 .tickets-section { margin-bottom: 60px; }
 
-.tickets-header {
+.tickets-table {
   display: grid;
-  grid-template-columns: 72px 150px 1fr 100px 110px 130px;
-  gap: 16px;
-  padding: 8px 20px;
-  border-bottom: 1px solid rgba(192,24,42,0.1);
-  margin-bottom: 2px;
+  grid-template-columns: 72px minmax(120px, 160px) minmax(0, 1fr) 90px 110px 130px;
+  column-gap: 16px;
+  overflow-x: auto;
 }
 
-.tickets-header span {
+.th {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 9px;
   letter-spacing: 0.35em;
   color: rgba(168,152,136,0.35);
   text-transform: uppercase;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(192,24,42,0.1);
 }
 
-.ticket-row {
-  display: grid;
-  grid-template-columns: 72px 150px 1fr 100px 110px 130px;
-  gap: 16px;
-  align-items: center;
-  padding: 16px 20px;
+.th:first-child  { padding-left: 20px; }
+.th:last-child   { padding-right: 20px; }
+
+.tickets-table > :not(.th) {
+  padding-top: 16px;
+  padding-bottom: 16px;
   border-bottom: 1px solid rgba(192,24,42,0.06);
-  border-left: 2px solid transparent;
-  transition: background 0.15s;
+  align-self: center;
 }
 
-.ticket-row:hover { background: rgba(192,24,42,0.05); }
+.tickets-table > .ticket-date { padding-left: 20px; }
+.tickets-table > .buy-btn     { padding-right: 20px; }
 
 .ticket-date {
   display: flex; flex-direction: column;
