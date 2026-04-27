@@ -1,0 +1,74 @@
+<main>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-eyebrow">European Tour 2026 &nbsp;·&nbsp; 12 Cities</div>
+    <h1 class="page-title"><span>Live</span></h1>
+    <div class="page-divider"></div>
+  </div>
+
+  <!-- TOUR HERO -->
+  <div class="tour-hero">
+    <div class="hero-image">
+      <div class="placeholder-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      </div>
+      <span class="placeholder-label">Live Stage Photo</span>
+      <div class="hero-overlay">
+        <div class="hero-tag">On Tour Now</div>
+        <div class="hero-heading">European Tour <span>2026</span></div>
+        <div class="hero-sub">Jun 14 – Jul 2 &nbsp;·&nbsp; 12 Cities</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPCOMING SHOWS -->
+  <div class="shows-section">
+    <div class="section-label">Upcoming Shows</div>
+    <div class="shows-header">
+      <span>Date</span>
+      <span>City</span>
+      <span>Venue</span>
+      <span>Status</span>
+      <span></span>
+    </div>
+    @for (show of shows; track show.date) {
+      <div class="show-row" [class.featured]="show.isFeatured">
+        <div class="show-date">
+          <span class="show-month">{{ show.month }}</span>
+          <span class="show-day">{{ show.day }}</span>
+        </div>
+        <div class="show-city">{{ show.city }}</div>
+        <div class="show-venue">{{ show.venue }}<span class="show-country">&nbsp;·&nbsp;{{ show.country }}</span></div>
+        <div class="show-status" [class]="'s-' + show.status">
+          @if (show.status === 'available') { On Sale }
+          @else if (show.status === 'limited') { Few Left }
+          @else { Sold Out }
+        </div>
+        <a href="#" class="ticket-btn" [class.sold]="show.status === 'soldout'">
+          @if (show.status !== 'soldout') { Tickets &rarr; } @else { Sold Out }
+        </a>
+      </div>
+    }
+  </div>
+
+  <!-- PAST SHOWS -->
+  <div class="past-section">
+    <div class="section-label">Past Shows</div>
+    <div class="past-grid">
+      @for (show of pastShows; track show.date) {
+        <div class="past-card">
+          <div class="past-img">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <span class="past-tag">{{ show.label }}</span>
+          </div>
+          <div class="past-city">{{ show.city }}</div>
+          <div class="past-meta">{{ show.venue }} &nbsp;·&nbsp; {{ show.date }}</div>
+        </div>
+      }
+    </div>
+  </div>
+
+</main>

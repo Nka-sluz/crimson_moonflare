@@ -1,0 +1,94 @@
+<main>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-eyebrow">Official Merchandise &nbsp;·&nbsp; Tickets</div>
+    <h1 class="page-title"><span>Shop</span></h1>
+    <div class="page-divider"></div>
+  </div>
+
+  <!-- TAB BAR -->
+  <div class="tab-bar">
+    <button class="tab-btn" [class.active]="activeTab() === 'merch'"   (click)="setTab('merch')">
+      <svg viewBox="0 0 24 24"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
+      Merch
+    </button>
+    <button class="tab-btn" [class.active]="activeTab() === 'tickets'" (click)="setTab('tickets')">
+      <svg viewBox="0 0 24 24"><path d="M2 9v11a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V9"/><path d="M22 9a3 3 0 0 0-6 0 3 3 0 0 0-6 0 3 3 0 0 0-6 0H2V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v5z"/></svg>
+      Tickets
+    </button>
+  </div>
+
+  <!-- MERCH TAB -->
+  @if (activeTab() === 'merch') {
+    <div class="merch-section">
+      <div class="section-label">All Products</div>
+      <div class="product-grid">
+        @for (product of products; track product.id) {
+          <div class="product-card" [class.sold-out]="product.isSoldOut">
+            <div class="product-image">
+              <div class="placeholder-icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              </div>
+              @if (product.isNew) {
+                <span class="new-badge">New</span>
+              }
+              @if (product.isSoldOut) {
+                <div class="sold-overlay">Sold Out</div>
+              }
+            </div>
+            <div class="product-body">
+              <div class="product-cat">{{ product.category }}</div>
+              <div class="product-name">{{ product.name }}</div>
+              <div class="product-footer">
+                <span class="product-price">{{ product.price }}</span>
+                @if (!product.isSoldOut) {
+                  <button class="add-btn">Add to Cart</button>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- TICKETS TAB -->
+  @if (activeTab() === 'tickets') {
+    <div class="tickets-section">
+      <div class="section-label">European Tour 2026</div>
+      <div class="tickets-header">
+        <span>Date</span>
+        <span>City</span>
+        <span>Venue</span>
+        <span>Price</span>
+        <span>Status</span>
+        <span></span>
+      </div>
+      @for (ticket of tickets; track ticket.city) {
+        <div class="ticket-row">
+          <div class="ticket-date">
+            <span class="t-month">{{ ticket.month }}</span>
+            <span class="t-day">{{ ticket.day }}</span>
+          </div>
+          <div class="ticket-city">{{ ticket.city }}</div>
+          <div class="ticket-venue">{{ ticket.venue }}</div>
+          <div class="ticket-price">{{ ticket.price }}</div>
+          <div class="ticket-status" [class]="'ts-' + ticket.status">
+            @if (ticket.status === 'available') { On Sale }
+            @else if (ticket.status === 'limited') { Few Left }
+            @else { Sold Out }
+          </div>
+          <a href="#" class="buy-btn" [class.sold]="ticket.status === 'soldout'">
+            @if (ticket.status !== 'soldout') { Buy &rarr; } @else { Sold Out }
+          </a>
+        </div>
+      }
+      <div class="tickets-note">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        All prices include booking fee. Secure checkout via Stripe.
+      </div>
+    </div>
+  }
+
+</main>
