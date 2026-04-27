@@ -308,3 +308,49 @@ main {
   font-size: 12px; font-weight: 300;
   color: var(--ash);
 }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  main {
+    padding: calc(var(--nav-top) + 36px) 16px 60px 16px;
+    max-width: 100%;
+  }
+
+  .page-header { margin-bottom: 36px; }
+
+  .tour-hero { margin-bottom: 48px; }
+
+  .hero-image { aspect-ratio: 16/9; }
+
+  .hero-overlay {
+    bottom: 20px;
+    left: 16px;
+  }
+
+  .hero-heading { font-size: clamp(20px, 6vw, 36px); }
+
+  /* Collapse shows table to 3 effective columns */
+  .shows-section { margin-bottom: 56px; }
+  .shows-header   { display: none; }
+
+  .show-row {
+    grid-template-columns: 56px 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 4px 12px;
+    padding: 14px 4px;
+  }
+
+  .show-date   { grid-row: 1 / 3; align-self: center; }
+  .show-city   { grid-column: 2; grid-row: 1; font-size: 18px; align-self: end; }
+  .show-venue  { grid-column: 2; grid-row: 2; align-self: start; }
+  .show-status { display: none; }
+  .ticket-btn  { grid-column: 3; grid-row: 1 / 3; align-self: center; padding: 8px 12px; font-size: 10px; }
+
+  .past-section { margin-bottom: 40px; }
+
+  .past-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+}

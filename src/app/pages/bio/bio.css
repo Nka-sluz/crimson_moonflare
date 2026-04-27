@@ -342,3 +342,61 @@ main {
   color: rgba(232,213,196,0.5);
   text-transform: uppercase;
 }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  main {
+    padding: calc(var(--nav-top) + 36px) 20px 60px 20px;
+    max-width: 100%;
+  }
+
+  .page-header { margin-bottom: 48px; }
+
+  .origin-section {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 56px;
+  }
+
+  .origin-image-placeholder {
+    aspect-ratio: 16/9;
+    max-height: 260px;
+  }
+
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 56px;
+  }
+
+  .members-section { margin-bottom: 56px; }
+
+  .members-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .quote-block {
+    margin-bottom: 56px;
+    padding-left: 24px;
+  }
+
+  .values-section { margin-bottom: 56px; }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    margin-top: 28px;
+  }
+
+  .press-section { margin-bottom: 40px; }
+
+  .press-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .press-col {
+    gap: 2px;
+  }
+
+  .press-image.tall { aspect-ratio: 3/4; }
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -7,4 +7,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './nav.html',
   styleUrl: './nav.css'
 })
-export class NavComponent {}
+export class NavComponent {
+  isOpen = signal(false);
+  toggle(): void { this.isOpen.update(v => !v); }
+  close(): void  { this.isOpen.set(false); }
+}

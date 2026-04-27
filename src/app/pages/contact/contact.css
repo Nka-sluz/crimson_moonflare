@@ -323,8 +323,44 @@ textarea { resize: vertical; min-height: 140px; }
   font-family: 'Cinzel Decorative', serif;
   font-size: clamp(12px, 1.2vw, 15px);
   font-style: italic;
-  color: rgba(168,152,136);
+  color: rgba(168,152,136,1);
   text-align: center;
   letter-spacing: 0.03em;
   white-space: nowrap;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  main {
+    padding: calc(var(--nav-top) + 36px) 20px 60px 20px;
+    max-width: 100%;
+  }
+
+  .page-header { margin-bottom: 40px; }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .info-block { padding-right: 0; }
+
+  .bottom-quote {
+    padding-top: 40px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .bq-text {
+    white-space: normal;
+    font-size: 12px;
+  }
+
+  .bq-line { display: none; }
 }

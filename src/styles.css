@@ -9,6 +9,14 @@
   --dark:     #0a0608;
   --charcoal: #130c0e;
   --nav-w:    260px;
+  --nav-top:  0px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --nav-w:   0px;
+    --nav-top: 56px;
+  }
 }
 
 html, body {

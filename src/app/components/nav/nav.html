@@ -1,17 +1,36 @@
-<nav>
+<!-- Mobile top bar (visible only on mobile) -->
+<div class="mobile-bar">
   <div class="nav-logo">
+    <div class="nav-logo-mark"></div>
+    <div class="nav-logo-text">CRIMSON<br>MOONFLARE</div>
+  </div>
+  <button class="hamburger" (click)="toggle()" [class.active]="isOpen()" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</div>
+
+<!-- Overlay (mobile — click to close) -->
+@if (isOpen()) {
+  <div class="nav-overlay" (click)="close()"></div>
+}
+
+<!-- Sidebar nav -->
+<nav [class.open]="isOpen()">
+  <div class="nav-logo nav-logo-sidebar">
     <div class="nav-logo-mark"></div>
     <div class="nav-logo-text">CRIMSON<br>MOONFLARE</div>
   </div>
 
   <ul>
-    <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
-    <li routerLinkActive="active"><a routerLink="/bio">Who We Are</a></li>
-    <li routerLinkActive="active"><a routerLink="/live">Live</a></li>
-    <li routerLinkActive="active"><a routerLink="/music">Music</a></li>
-    <li routerLinkActive="active"><a routerLink="/news">News</a></li>
-    <li routerLinkActive="active"><a routerLink="/shop">Shop</a></li>
-    <li routerLinkActive="active"><a routerLink="/contact">Contact</a></li>
+    <li routerLinkActive="active"><a routerLink="/home"    (click)="close()">Home</a></li>
+    <li routerLinkActive="active"><a routerLink="/bio"     (click)="close()">Who We Are</a></li>
+    <li routerLinkActive="active"><a routerLink="/live"    (click)="close()">Live</a></li>
+    <li routerLinkActive="active"><a routerLink="/music"   (click)="close()">Music</a></li>
+    <li routerLinkActive="active"><a routerLink="/news"    (click)="close()">News</a></li>
+    <li routerLinkActive="active"><a routerLink="/shop"    (click)="close()">Shop</a></li>
+    <li routerLinkActive="active"><a routerLink="/contact" (click)="close()">Contact</a></li>
   </ul>
 
   <div class="mini-player">

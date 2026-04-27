@@ -294,3 +294,34 @@ main {
   width: 14px; height: 14px;
   fill: currentColor;
 }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .tour-strip {
+    top: var(--nav-top);
+    left: 0;
+    font-size: 10px;
+    gap: 12px;
+    padding: 0 12px;
+  }
+
+  main {
+    padding-top: calc(var(--nav-top) + 36px); /* below mobile bar + tour strip */
+  }
+
+  .band-name {
+    font-size: clamp(28px, 10vw, 48px);
+  }
+
+  .social-hint {
+    display: none;
+  }
+
+  .moon {
+    width: 220px;
+    height: 220px;
+  }
+
+  .orbit  { width: 280px; height: 280px; }
+  .orbit-2 { width: 340px; height: 170px; }
+}
