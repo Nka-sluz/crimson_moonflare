@@ -407,7 +407,7 @@ main {
 
   .ticket-row {
     display: grid;
-    grid-template-columns: 60px 1fr auto;
+    grid-template-columns: 60px 1fr 100px;
     grid-template-rows: auto auto;
     column-gap: 14px;
     row-gap: 3px;
@@ -422,12 +422,12 @@ main {
     align-self: auto;
   }
 
-  .ticket-date  { grid-column: 1; grid-row: 1 / 3; align-self: center; padding-left: 0; }
+  .ticket-date  { grid-column: 1; grid-row: 1 / 3; align-self: center; }
   .ticket-city  { grid-column: 2; grid-row: 1; font-size: 18px; align-self: end; }
   .ticket-venue { grid-column: 2; grid-row: 2; font-size: 12px; align-self: start; color: var(--ash); }
   .ticket-price { display: none; }
   .ticket-status { display: none; }
-  .buy-btn      { grid-column: 3; grid-row: 1 / 3; align-self: center; padding: 8px 12px; font-size: 10px; padding-right: 0; }
+  .buy-btn      { grid-column: 3; grid-row: 1 / 3; align-self: center; padding: 8px 8px; font-size: 10px; width: 100%; }
 
   .tickets-note { font-size: 11px; }
 }
