@@ -392,6 +392,28 @@ main {
   white-space: nowrap;
 }
 
+/* ── TABLET ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .page-header {
+    padding: 28px 36px 22px;
+  }
+
+  .music-browser {
+    grid-template-columns: 220px 1fr;
+  }
+
+  .detail-top {
+    padding: 28px 36px;
+    gap: 28px;
+  }
+
+  .tracklist-header,
+  .detail-track {
+    padding-left: 16px;
+    padding-right: 36px;
+  }
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   main {

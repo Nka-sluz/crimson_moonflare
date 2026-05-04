@@ -343,6 +343,26 @@ main {
   text-transform: uppercase;
 }
 
+/* ── TABLET ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  main {
+    padding: 48px 40px 80px 40px;
+  }
+
+  .origin-section {
+    grid-template-columns: 1fr 280px;
+    gap: 40px;
+  }
+
+  .members-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .press-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   main {

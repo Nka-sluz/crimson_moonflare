@@ -48,7 +48,7 @@ nav ul li a {
   letter-spacing: 0.12em;
   color: var(--ash);
   text-decoration: none;
-  padding: 6px 0;
+  padding: 10px 0;
   position: relative;
   transition: color 0.25s;
 }
@@ -165,12 +165,13 @@ nav ul li.active a::before { width: 30px; background: var(--ember); }
   color: rgba(168,152,136,0.5);
   display: flex; align-items: center; justify-content: center;
   cursor: default;
+  min-width: 36px; min-height: 36px;
 }
 
 .mini-ctrl svg { width: 12px; height: 12px; fill: currentColor; }
 
 .mini-ctrl.play {
-  width: 28px; height: 28px;
+  width: 36px; height: 36px;
   border: 1px solid rgba(192,24,42,0.35);
   border-radius: 50%;
   color: var(--pale);

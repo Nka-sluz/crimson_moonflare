@@ -254,6 +254,22 @@ main {
   border-color: var(--ember);
 }
 
+/* ── TABLET ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  main {
+    padding: 48px 40px 80px 40px;
+  }
+
+  .featured-post {
+    grid-template-columns: 1fr 300px;
+    gap: 36px;
+  }
+
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   main {

@@ -309,6 +309,17 @@ main {
   color: var(--ash);
 }
 
+/* ── TABLET ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  main {
+    padding: 48px 40px 80px 40px;
+  }
+
+  .past-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   main {

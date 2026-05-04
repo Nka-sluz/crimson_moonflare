@@ -325,3 +325,29 @@ main {
   .orbit  { width: 280px; height: 280px; }
   .orbit-2 { width: 340px; height: 170px; }
 }
+
+@media (max-width: 400px) {
+  .tour-strip {
+    gap: 8px;
+  }
+
+  .tour-strip-dot { display: none; }
+
+  .tour-strip-text {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+
+  .band-name {
+    font-size: clamp(24px, 9vw, 40px);
+  }
+
+  .tagline {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+  }
+}

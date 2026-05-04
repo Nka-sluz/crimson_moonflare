@@ -329,6 +329,21 @@ textarea { resize: vertical; min-height: 140px; }
   white-space: nowrap;
 }
 
+/* ── TABLET ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  main {
+    padding: 48px 40px 80px 40px;
+  }
+
+  .contact-layout {
+    gap: 48px;
+  }
+
+  .info-column {
+    min-width: 260px;
+  }
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   main {

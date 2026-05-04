@@ -12,6 +12,12 @@
   --nav-top:  0px;
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --nav-w: 220px;
+  }
+}
+
 @media (max-width: 768px) {
   :root {
     --nav-w:   0px;
@@ -46,3 +52,29 @@ body::before {
 }
 .glow-accent.top-right  { top: -100px; right: 0; }
 .glow-accent.bottom-left { bottom: -100px; left: var(--nav-w); }
+
+/* Prevent 300ms tap delay on all interactive elements */
+a, button, [role="button"], input, select, textarea, label {
+  touch-action: manipulation;
+}
+
+/* Focus styles for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--crimson);
+  outline-offset: 2px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: rgba(192,24,42,0.35); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(192,24,42,0.6); }
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -65,21 +65,23 @@
         <span class="th">Status</span>
         <span class="th"></span>
         @for (ticket of tickets; track ticket.city) {
-          <div class="ticket-date">
-            <span class="t-month">{{ ticket.month }}</span>
-            <span class="t-day">{{ ticket.day }}</span>
+          <div class="ticket-row">
+            <div class="ticket-date">
+              <span class="t-month">{{ ticket.month }}</span>
+              <span class="t-day">{{ ticket.day }}</span>
+            </div>
+            <div class="ticket-city">{{ ticket.city }}</div>
+            <div class="ticket-venue">{{ ticket.venue }}</div>
+            <div class="ticket-price">{{ ticket.price }}</div>
+            <div class="ticket-status" [class]="'ts-' + ticket.status">
+              @if (ticket.status === 'available') { On Sale }
+              @else if (ticket.status === 'limited') { Few Left }
+              @else { Sold Out }
+            </div>
+            <a href="#" class="buy-btn" [class.sold]="ticket.status === 'soldout'">
+              @if (ticket.status !== 'soldout') { Buy &rarr; } @else { Sold Out }
+            </a>
           </div>
-          <div class="ticket-city">{{ ticket.city }}</div>
-          <div class="ticket-venue">{{ ticket.venue }}</div>
-          <div class="ticket-price">{{ ticket.price }}</div>
-          <div class="ticket-status" [class]="'ts-' + ticket.status">
-            @if (ticket.status === 'available') { On Sale }
-            @else if (ticket.status === 'limited') { Few Left }
-            @else { Sold Out }
-          </div>
-          <a href="#" class="buy-btn" [class.sold]="ticket.status === 'soldout'">
-            @if (ticket.status !== 'soldout') { Buy &rarr; } @else { Sold Out }
-          </a>
         }
       </div>
       <div class="tickets-note">
