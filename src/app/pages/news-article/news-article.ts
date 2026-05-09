@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, DestroyRef } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { combineLatest } from 'rxjs';
 
 interface NewsArticle {
   id: number;
@@ -25,6 +26,13 @@ export class NewsArticleComponent implements OnInit {
 
   article: NewsArticle | null = null;
   relatedArticles: NewsArticle[] = [];
+  ref: string | null = null;
+
+  get backLink(): { label: string; path: string } {
+    if (this.ref === 'bio')  return { label: 'Back to Who We Are', path: '/bio' };
+    if (this.ref === 'live') return { label: 'Back to Live',        path: '/live' };
+    return { label: 'Back to News', path: '/news' };
+  }
 
   articles: NewsArticle[] = [
     {
@@ -71,6 +79,20 @@ export class NewsArticleComponent implements OnInit {
       ],
     },
     {
+      id: 8,
+      date: 'Mar 20, 2025',
+      category: 'Band Update',
+      title: 'Press Shoot 2025 — Behind the Camera',
+      excerpt: 'We did our first proper press photo session. What we were going for, how it went, and why we almost scrapped half the shots.',
+      image: 'promo-press.png',
+      content: [
+        'We\'ve been putting off a proper press photo shoot since we started. For most of our first year, our only promo images were things taken by friends on phones at rehearsals and after shows. It worked. But it also stopped working.',
+        'In March we went into a studio in Zurich with photographer Lena Voss for a full day. We\'d spent a week beforehand arguing about what we wanted it to look like. The short version: not polished, not posed, not like a band that\'s been media-trained into having the same expression in every shot.',
+        'The session ran about seven hours. We shot in the studio and on the street outside. Lena had a way of shooting mid-movement — while we were adjusting a strap, talking to each other, looking away — that captured something a posed shot never quite does.',
+        'We almost scrapped about 40% of what we shot that day. Kept the ones where we looked like ourselves. If you\'ve seen the new press images, you\'ve seen what survived.',
+      ],
+    },
+    {
       id: 4,
       date: 'Mar 15, 2025',
       category: 'Release',
@@ -99,6 +121,20 @@ export class NewsArticleComponent implements OnInit {
       ],
     },
     {
+      id: 7,
+      date: 'Dec 16, 2024',
+      category: 'Show Recap',
+      title: 'First Night: Our Debut Show at Dynamo, Zurich',
+      excerpt: 'Nine songs, one barrier that disappeared by the third track, and a room full of people who showed up for a band they\'d only heard online.',
+      image: 'stage-live.png',
+      content: [
+        'We played our first show on December 14th at Dynamo in Zurich. Nine songs. Thirty-five minutes. The room held maybe 200 people and it was full.',
+        'We\'d rehearsed obsessively for weeks. We knew the songs. What we didn\'t know was how it would feel to actually stand there with the lights on us and people looking back. That part isn\'t rehearsable.',
+        'By the third song, something shifted. The barrier between the stage and the floor — there wasn\'t one, not really, but there\'s always that invisible line at the start of a show — it disappeared. People moved forward. The energy in the room changed. We\'d been warned about this by every band we\'d talked to: the moment a show stops being a performance and starts being something shared.',
+        'We\'ve played bigger shows since. More polished setups, better monitors, proper lighting rigs. None of them have felt quite like that first night at Dynamo. We\'re glad we held onto the memory before it got too far away.',
+      ],
+    },
+    {
       id: 6,
       date: 'Nov 22, 2024',
       category: 'Release',
@@ -115,10 +151,11 @@ export class NewsArticleComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.route.paramMap.pipe(
+    combineLatest([this.route.paramMap, this.route.queryParamMap]).pipe(
       takeUntilDestroyed(this.destroyRef)
-    ).subscribe(params => {
+    ).subscribe(([params, queryParams]) => {
       const id = Number(params.get('id'));
+      this.ref = queryParams.get('ref');
       this.article = this.articles.find(a => a.id === id) ?? null;
       this.relatedArticles = this.articles.filter(a => a.id !== id).slice(0, 3);
     });

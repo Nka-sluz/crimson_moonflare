@@ -152,21 +152,21 @@
   <div class="press-section">
     <div class="section-label">Live &amp; Behind the Scenes</div>
     <div class="press-grid">
-      <a routerLink="/live" class="press-image tall">
+      <a [routerLink]="['/news', 7]" [queryParams]="{ref: 'bio'}" class="press-image tall">
         <img src="stage-live.png" alt="Crimson Moonflare live performance">
         <span class="press-tag">Live · 2024</span>
       </a>
       <div class="press-col">
-        <a routerLink="/news/3" class="press-image square">
+        <a [routerLink]="['/news', 3]" [queryParams]="{ref: 'bio'}" class="press-image square">
           <img src="backstage.png" alt="Backstage">
           <span class="press-tag">Behind the scenes</span>
         </a>
-        <a routerLink="/music" class="press-image square">
+        <a [routerLink]="['/news', 1]" [queryParams]="{ref: 'bio'}" class="press-image square">
           <img src="studio-recording.png" alt="Studio">
           <span class="press-tag">Recording · 2025</span>
         </a>
       </div>
-      <a routerLink="/news" class="press-image tall">
+      <a [routerLink]="['/news', 8]" [queryParams]="{ref: 'bio'}" class="press-image tall">
         <img src="promo-press.png" alt="Promo photo">
         <span class="press-tag">Press · 2025</span>
       </a>

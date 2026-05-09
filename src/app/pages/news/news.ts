@@ -45,6 +45,14 @@ export class NewsComponent {
       image: 'news-recording-diary.png',
     },
     {
+      id: 8,
+      date: 'Mar 20, 2025',
+      category: 'Band Update',
+      title: 'Press Shoot 2025 — Behind the Camera',
+      excerpt: 'We did our first proper press photo session. What we were going for, how it went, and why we almost scrapped half the shots.',
+      image: 'promo-press.png',
+    },
+    {
       id: 4,
       date: 'Mar 15, 2025',
       category: 'Release',
@@ -59,6 +67,14 @@ export class NewsComponent {
       title: 'EP Release Show — Basel, Kaserne — Feb 28',
       excerpt: 'We\'re playing our first proper headline show to celebrate the EP announcement. Doors at 8. Support acts TBA.',
       image: 'news-ep-show-announcement.png',
+    },
+    {
+      id: 7,
+      date: 'Dec 16, 2024',
+      category: 'Show Recap',
+      title: 'First Night: Our Debut Show at Dynamo, Zurich',
+      excerpt: 'Nine songs, one barrier that disappeared by the third track, and a room full of people who showed up for a band they\'d only heard online.',
+      image: 'stage-live.png',
     },
     {
       id: 6,

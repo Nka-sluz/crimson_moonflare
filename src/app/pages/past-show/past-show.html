@@ -27,7 +27,7 @@
     @if (show.relatedNewsId) {
       <div class="related-section">
         <div class="section-label">Related News</div>
-        <a [routerLink]="['/news', show.relatedNewsId]" class="news-link-card">
+        <a [routerLink]="['/news', show.relatedNewsId]" [queryParams]="{ref: 'live'}" class="news-link-card">
           <div class="news-link-inner">
             <span class="news-link-label">Announcement</span>
             <span class="news-link-title">{{ show.relatedNewsTitle }}</span>

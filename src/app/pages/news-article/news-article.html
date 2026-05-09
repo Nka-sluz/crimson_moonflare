@@ -2,9 +2,9 @@
 
   @if (article) {
 
-    <a routerLink="/news" class="back-link">
+    <a [routerLink]="backLink.path" class="back-link">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      Back to News
+      {{ backLink.label }}
     </a>
 
     <div class="article-header">
@@ -29,7 +29,7 @@
       <div class="section-label">More News</div>
       <div class="related-grid">
         @for (item of relatedArticles; track item.id) {
-          <a [routerLink]="['/news', item.id]" class="related-card">
+          <a [routerLink]="['/news', item.id]" [queryParams]="ref ? {ref: ref} : null" class="related-card">
             <div class="related-image">
               <img [src]="item.image" [alt]="item.title">
               <span class="related-cat">{{ item.category }}</span>
@@ -48,9 +48,9 @@
     <div class="not-found">
       <div class="page-eyebrow">404</div>
       <h2 class="not-found-title">Article Not Found</h2>
-      <a routerLink="/news" class="back-link">
+      <a [routerLink]="backLink.path" class="back-link">
         <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        Back to News
+        {{ backLink.label }}
       </a>
     </div>
 
