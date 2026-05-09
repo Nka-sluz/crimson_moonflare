@@ -1,5 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, DestroyRef } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 interface NewsArticle {
   id: number;
@@ -20,6 +21,7 @@ interface NewsArticle {
 })
 export class NewsArticleComponent implements OnInit {
   private route = inject(ActivatedRoute);
+  private destroyRef = inject(DestroyRef);
 
   article: NewsArticle | null = null;
   relatedArticles: NewsArticle[] = [];
@@ -113,8 +115,12 @@ export class NewsArticleComponent implements OnInit {
   ];
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.article = this.articles.find(a => a.id === id) ?? null;
-    this.relatedArticles = this.articles.filter(a => a.id !== id).slice(0, 3);
+    this.route.paramMap.pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(params => {
+      const id = Number(params.get('id'));
+      this.article = this.articles.find(a => a.id === id) ?? null;
+      this.relatedArticles = this.articles.filter(a => a.id !== id).slice(0, 3);
+    });
   }
 }

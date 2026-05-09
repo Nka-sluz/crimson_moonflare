@@ -55,14 +55,14 @@
     <div class="section-label">Past Shows</div>
     <div class="past-grid">
       @for (show of pastShows; track show.date) {
-        <div class="past-card">
+        <a [routerLink]="['/past-show', show.id]" class="past-card">
           <div class="past-img">
             <img [src]="show.image" [alt]="show.city">
             <span class="past-tag">{{ show.label }}</span>
           </div>
           <div class="past-city">{{ show.city }}</div>
           <div class="past-meta">{{ show.venue }} &nbsp;·&nbsp; {{ show.date }}</div>
-        </div>
+        </a>
       }
     </div>
   </div>

@@ -302,7 +302,16 @@ main {
   object-fit: cover;
   object-position: center;
   z-index: 0;
+  transition: transform 0.4s ease;
 }
+
+a.past-card {
+  text-decoration: none;
+  display: block;
+}
+
+a.past-card:hover .past-img img { transform: scale(1.04); }
+a.past-card:hover .past-city { color: var(--crimson); }
 
 .past-img::before {
   content: '';

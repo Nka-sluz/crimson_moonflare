@@ -9,13 +9,13 @@
 
   <!-- FEATURED POST -->
   <div class="featured-post">
-    <div class="featured-image">
+    <a [routerLink]="['/news', featuredPost.id]" class="featured-image">
       <img [src]="featuredPost.image" [alt]="featuredPost.title">
       <div class="featured-overlay">
         <span class="cat-badge">{{ featuredPost.category }}</span>
         <div class="featured-overlay-date">{{ featuredPost.date }}</div>
       </div>
-    </div>
+    </a>
     <div class="featured-text">
       <span class="cat-badge">{{ featuredPost.category }}</span>
       <h2 class="featured-title">{{ featuredPost.title }}</h2>
@@ -30,10 +30,10 @@
     <div class="news-grid">
       @for (item of otherPosts; track item.id) {
         <div class="news-card">
-          <div class="card-image">
+          <a [routerLink]="['/news', item.id]" class="card-image">
             <img [src]="item.image" [alt]="item.title">
             <span class="card-cat">{{ item.category }}</span>
-          </div>
+          </a>
           <div class="card-body">
             <div class="card-date">{{ item.date }}</div>
             <div class="card-title">{{ item.title }}</div>

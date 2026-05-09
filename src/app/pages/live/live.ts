@@ -13,6 +13,7 @@ interface Show {
 }
 
 interface PastShow {
+  id: number;
   date: string;
   city: string;
   venue: string;
@@ -38,9 +39,9 @@ export class LiveComponent {
   ];
 
   pastShows: PastShow[] = [
-    { date: 'Dec 2024', city: 'Zurich',  venue: 'Dynamo',    label: 'Debut Show',  image: 'past-show-zurich.png'  },
-    { date: 'Feb 2025', city: 'Basel',   venue: 'Kaserne',   label: 'EP Release',  image: 'past-show-basel.png'   },
-    { date: 'Apr 2025', city: 'Bern',    venue: 'ISC Club',  label: 'Support Act', image: 'past-show-bern.png'    },
-    { date: 'May 2025', city: 'Geneva',  venue: "L'Usine",   label: 'Headline',    image: 'past-show-geneva.png'  },
+    { id: 1, date: 'Dec 2024', city: 'Zurich',  venue: 'Dynamo',    label: 'Debut Show',  image: 'past-show-zurich.png'  },
+    { id: 2, date: 'Feb 2025', city: 'Basel',   venue: 'Kaserne',   label: 'EP Release',  image: 'past-show-basel.png'   },
+    { id: 3, date: 'Apr 2025', city: 'Bern',    venue: 'ISC Club',  label: 'Support Act', image: 'past-show-bern.png'    },
+    { id: 4, date: 'May 2025', city: 'Geneva',  venue: "L'Usine",   label: 'Headline',    image: 'past-show-geneva.png'  },
   ];
 }

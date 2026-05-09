@@ -1,0 +1,53 @@
+<main>
+
+  @if (show) {
+
+    <a routerLink="/live" class="back-link">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Live
+    </a>
+
+    <div class="show-header">
+      <span class="show-badge">{{ show.label }}</span>
+      <h1 class="show-title">{{ show.city }}</h1>
+      <div class="show-meta">{{ show.venue }} &nbsp;·&nbsp; {{ show.country }} &nbsp;·&nbsp; {{ show.date }}</div>
+      <div class="page-divider"></div>
+    </div>
+
+    <div class="show-hero">
+      <img [src]="show.image" [alt]="show.city + ' — ' + show.label">
+    </div>
+
+    <div class="show-body">
+      @for (para of show.description; track $index) {
+        <p class="show-para">{{ para }}</p>
+      }
+    </div>
+
+    @if (show.relatedNewsId) {
+      <div class="related-section">
+        <div class="section-label">Related News</div>
+        <a [routerLink]="['/news', show.relatedNewsId]" class="news-link-card">
+          <div class="news-link-inner">
+            <span class="news-link-label">Announcement</span>
+            <span class="news-link-title">{{ show.relatedNewsTitle }}</span>
+          </div>
+          <span class="news-link-arrow">&rarr;</span>
+        </a>
+      </div>
+    }
+
+  } @else {
+
+    <div class="not-found">
+      <div class="page-eyebrow">404</div>
+      <h2 class="not-found-title">Show Not Found</h2>
+      <a routerLink="/live" class="back-link">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Live
+      </a>
+    </div>
+
+  }
+
+</main>
