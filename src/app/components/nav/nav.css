@@ -244,7 +244,7 @@ nav ul li.active a::before { width: 30px; background: var(--ember); }
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 200;
     width: 280px;
-    padding-top: 24px;
+    padding-top: calc(var(--nav-top) + 16px);
   }
 
   nav.open {
