@@ -242,7 +242,7 @@ nav ul li.active a::before { width: 30px; background: var(--ember); }
   nav {
     transform: translateX(-100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 200;
+    z-index: 250; /* above home tour-strip (200), below mobile-bar (300) */
     width: 280px;
     padding-top: calc(var(--nav-top) + 16px);
   }

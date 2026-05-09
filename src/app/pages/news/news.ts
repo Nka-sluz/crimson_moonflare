@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface NewsItem {
   id: number;
@@ -12,7 +13,7 @@ interface NewsItem {
 
 @Component({
   selector: 'app-news',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './news.html',
   styleUrl: './news.css'
 })

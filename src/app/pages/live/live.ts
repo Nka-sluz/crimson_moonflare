@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface Show {
   date: string;
@@ -21,7 +22,7 @@ interface PastShow {
 
 @Component({
   selector: 'app-live',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './live.html',
   styleUrl: './live.css'
 })

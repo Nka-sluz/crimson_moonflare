@@ -219,10 +219,12 @@ main {
 }
 
 .add-btn {
+  display: inline-block;
   padding: 6px 14px;
   background: transparent;
   border: 1px solid rgba(192,24,42,0.4);
   color: var(--ash);
+  text-decoration: none;
   cursor: pointer;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 9px;
@@ -241,11 +243,16 @@ main {
 /* ── TICKETS SECTION ── */
 .tickets-section { margin-bottom: 60px; }
 
+.tickets-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .tickets-table {
   display: grid;
   grid-template-columns: 72px minmax(120px, 160px) minmax(0, 1fr) 90px 110px 130px;
   column-gap: 16px;
-  overflow-x: auto;
+  min-width: 620px;
 }
 
 /* On desktop, ticket-row is invisible to the grid — children participate directly */
@@ -411,20 +418,22 @@ main {
   /* Tickets: convert flat grid to stacked card rows */
   .tickets-section { margin-bottom: 40px; }
 
+  .tickets-scroll { overflow-x: visible; }
+
   .tickets-table {
     display: flex;
     flex-direction: column;
-    overflow-x: visible;
+    min-width: unset;
   }
 
   .tickets-table > .th { display: none; }
 
   .ticket-row {
     display: grid;
-    grid-template-columns: 60px 1fr 100px;
-    grid-template-rows: auto auto;
-    column-gap: 14px;
-    row-gap: 3px;
+    grid-template-columns: 56px 1fr auto;
+    grid-template-rows: auto auto auto;
+    column-gap: 12px;
+    row-gap: 2px;
     padding: 14px 4px;
     border-bottom: 1px solid rgba(192,24,42,0.06);
   }
@@ -436,12 +445,12 @@ main {
     align-self: auto;
   }
 
-  .ticket-date  { grid-column: 1; grid-row: 1 / 3; align-self: center; }
-  .ticket-city  { grid-column: 2; grid-row: 1; font-size: 18px; align-self: end; }
-  .ticket-venue { grid-column: 2; grid-row: 2; font-size: 12px; align-self: start; color: var(--ash); }
-  .ticket-price { display: none; }
+  .ticket-date   { grid-column: 1; grid-row: 1 / 4; align-self: center; }
+  .ticket-city   { grid-column: 2; grid-row: 1; font-size: 18px; align-self: end; }
+  .ticket-venue  { grid-column: 2; grid-row: 2; font-size: 12px; align-self: center; color: var(--ash); }
+  .ticket-price  { grid-column: 2; grid-row: 3; font-size: 13px; align-self: start; margin-top: 2px; }
   .ticket-status { display: none; }
-  .buy-btn      { grid-column: 3; grid-row: 1 / 3; align-self: center; padding: 8px 8px; font-size: 10px; width: 100%; }
+  .buy-btn       { grid-column: 3; grid-row: 1 / 4; align-self: center; padding: 8px 10px; font-size: 10px; }
 
   .tickets-note { font-size: 11px; }
 }

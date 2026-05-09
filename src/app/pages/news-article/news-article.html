@@ -1,0 +1,59 @@
+<main>
+
+  @if (article) {
+
+    <a routerLink="/news" class="back-link">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to News
+    </a>
+
+    <div class="article-header">
+      <span class="cat-badge">{{ article.category }}</span>
+      <h1 class="article-title">{{ article.title }}</h1>
+      <div class="article-meta">{{ article.date }}</div>
+      <div class="page-divider"></div>
+    </div>
+
+    <div class="article-hero">
+      <img [src]="article.image" [alt]="article.title">
+    </div>
+
+    <div class="article-body">
+      <p class="article-lead">{{ article.excerpt }}</p>
+      @for (para of article.content; track $index) {
+        <p class="article-para">{{ para }}</p>
+      }
+    </div>
+
+    <div class="related-section">
+      <div class="section-label">More News</div>
+      <div class="related-grid">
+        @for (item of relatedArticles; track item.id) {
+          <a [routerLink]="['/news', item.id]" class="related-card">
+            <div class="related-image">
+              <img [src]="item.image" [alt]="item.title">
+              <span class="related-cat">{{ item.category }}</span>
+            </div>
+            <div class="related-body">
+              <div class="related-date">{{ item.date }}</div>
+              <div class="related-title">{{ item.title }}</div>
+            </div>
+          </a>
+        }
+      </div>
+    </div>
+
+  } @else {
+
+    <div class="not-found">
+      <div class="page-eyebrow">404</div>
+      <h2 class="not-found-title">Article Not Found</h2>
+      <a routerLink="/news" class="back-link">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to News
+      </a>
+    </div>
+
+  }
+
+</main>

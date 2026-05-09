@@ -42,7 +42,8 @@
           @else if (show.status === 'limited') { Few Left }
           @else { Sold Out }
         </div>
-        <a href="#" class="ticket-btn" [class.sold]="show.status === 'soldout'">
+        <a [routerLink]="show.status !== 'soldout' ? ['/tickets', show.city] : null"
+           class="ticket-btn" [class.sold]="show.status === 'soldout'">
           @if (show.status !== 'soldout') { Tickets &rarr; } @else { Sold Out }
         </a>
       </div>

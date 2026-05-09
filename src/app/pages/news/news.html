@@ -20,7 +20,7 @@
       <span class="cat-badge">{{ featuredPost.category }}</span>
       <h2 class="featured-title">{{ featuredPost.title }}</h2>
       <p class="featured-excerpt">{{ featuredPost.excerpt }}</p>
-      <a href="#" class="read-btn">Read More &rarr;</a>
+      <a [routerLink]="['/news', featuredPost.id]" class="read-btn">Read More &rarr;</a>
     </div>
   </div>
 
@@ -38,7 +38,7 @@
             <div class="card-date">{{ item.date }}</div>
             <div class="card-title">{{ item.title }}</div>
             <p class="card-excerpt">{{ item.excerpt }}</p>
-            <a href="#" class="card-link">Read More &rarr;</a>
+            <a [routerLink]="['/news', item.id]" class="card-link">Read More &rarr;</a>
           </div>
         </div>
       }

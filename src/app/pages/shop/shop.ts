@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface Product {
   id: number;
@@ -21,7 +22,7 @@ interface ShopTicket {
 
 @Component({
   selector: 'app-shop',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './shop.html',
   styleUrl: './shop.css'
 })

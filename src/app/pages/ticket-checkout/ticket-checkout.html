@@ -1,0 +1,169 @@
+<main>
+
+  <a routerLink="/shop" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Shop
+  </a>
+
+  @if (show) {
+
+    @if (!submitted()) {
+
+      <div class="page-header">
+        <div class="page-eyebrow">European Tour 2026 &nbsp;·&nbsp; Ticket Purchase</div>
+        <h1 class="page-title">{{ show.city }}</h1>
+        <div class="page-divider"></div>
+      </div>
+
+      <div class="checkout-layout">
+
+        <!-- SHOW INFO SIDEBAR -->
+        <aside class="show-info">
+          <div class="show-card">
+            <div class="show-date-block">
+              <span class="show-month">{{ show.month }}</span>
+              <span class="show-day">{{ show.day }}</span>
+              <span class="show-year">{{ show.year }}</span>
+            </div>
+            <div class="show-details">
+              <div class="show-city">{{ show.city }}</div>
+              <div class="show-venue">{{ show.venue }}</div>
+              <div class="show-country">{{ show.country }}</div>
+            </div>
+            <div class="show-status-row">
+              <span class="status-dot" [class]="'dot-' + show.status"></span>
+              @if (show.status === 'available') { <span class="status-text">On Sale</span> }
+              @else if (show.status === 'limited') { <span class="status-text limited">Few Left</span> }
+            </div>
+          </div>
+
+          <div class="price-info">
+            <div class="price-row">
+              <span class="price-label">General Admission</span>
+              <span class="price-val">CHF {{ show.basePrice }}</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">VIP</span>
+              <span class="price-val">CHF {{ show.vipPrice }}</span>
+            </div>
+            <div class="price-note">Prices include all booking fees.</div>
+          </div>
+
+          <div class="vip-perks">
+            <div class="perks-label">VIP Includes</div>
+            <ul class="perks-list">
+              <li>Early venue access (1h before doors)</li>
+              <li>Dedicated bar area</li>
+              <li>Exclusive merch bundle (tee + poster)</li>
+              <li>Meet & greet with the band</li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- PURCHASE FORM -->
+        <div class="purchase-form">
+
+          <!-- TICKET TYPE -->
+          <div class="form-section">
+            <div class="form-section-label">Ticket Type</div>
+            <div class="type-toggle">
+              <button class="type-btn" [class.active]="ticketType() === 'general'"
+                      (click)="setType('general')">
+                <span class="type-name">General Admission</span>
+                <span class="type-price">CHF {{ show.basePrice }}</span>
+              </button>
+              <button class="type-btn" [class.active]="ticketType() === 'vip'"
+                      (click)="setType('vip')">
+                <span class="type-name">VIP</span>
+                <span class="type-price">CHF {{ show.vipPrice }}</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- QUANTITY -->
+          <div class="form-section">
+            <div class="form-section-label">Quantity <span class="form-hint">(max 8)</span></div>
+            <div class="qty-row">
+              <button class="qty-btn" (click)="decrement()" [disabled]="quantity() <= 1">−</button>
+              <span class="qty-val">{{ quantity() }}</span>
+              <button class="qty-btn" (click)="increment()" [disabled]="quantity() >= 8">+</button>
+            </div>
+          </div>
+
+          <!-- CONTACT -->
+          <div class="form-section">
+            <div class="form-section-label">Your Details</div>
+            <div class="input-group">
+              <label class="input-label" for="name">Full Name</label>
+              <input id="name" class="form-input" type="text" placeholder="Jane Smith"
+                     [(ngModel)]="name" name="name" autocomplete="name">
+            </div>
+            <div class="input-group">
+              <label class="input-label" for="email">Email Address</label>
+              <input id="email" class="form-input" type="email" placeholder="jane@example.com"
+                     [(ngModel)]="email" name="email" autocomplete="email">
+              <div class="input-hint">Tickets will be sent to this address.</div>
+            </div>
+          </div>
+
+          <!-- ORDER SUMMARY -->
+          <div class="order-summary">
+            <div class="summary-row">
+              <span>{{ quantity() }}× {{ ticketType() === 'vip' ? 'VIP' : 'General Admission' }}</span>
+              <span>CHF {{ unitPrice() }} each</span>
+            </div>
+            <div class="summary-total">
+              <span>Total</span>
+              <span class="total-amount">CHF {{ total() }}</span>
+            </div>
+          </div>
+
+          <button class="checkout-btn" (click)="checkout()"
+                  [disabled]="!name.trim() || !email.trim()">
+            Complete Purchase &rarr;
+          </button>
+
+          <div class="secure-note">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Secure checkout · Powered by Stripe · Instant e-ticket delivery
+          </div>
+
+        </div>
+      </div>
+
+    } @else {
+
+      <!-- SUCCESS STATE -->
+      <div class="success-state">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="success-eyebrow">Order Confirmed</div>
+        <h2 class="success-title">You're Going to {{ show.city }}</h2>
+        <p class="success-sub">
+          {{ quantity() }}× {{ ticketType() === 'vip' ? 'VIP' : 'General Admission' }} ticket{{ quantity() > 1 ? 's' : '' }}
+          for {{ show.venue }}, {{ show.month }} {{ show.day }} · CHF {{ total() }} total
+        </p>
+        <p class="success-email">Confirmation sent to <strong>{{ email }}</strong></p>
+        <div class="success-actions">
+          <a routerLink="/live" class="btn-outline">View All Shows</a>
+          <a routerLink="/shop" class="btn-primary">Back to Shop</a>
+        </div>
+      </div>
+
+    }
+
+  } @else {
+
+    <div class="not-found">
+      <div class="page-eyebrow">Error</div>
+      <h2 class="not-found-title">Show Not Found</h2>
+      <a routerLink="/shop" class="back-link">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Shop
+      </a>
+    </div>
+
+  }
+
+</main>
