@@ -7,6 +7,7 @@ interface Product {
   category: string;
   isNew?: boolean;
   isSoldOut?: boolean;
+  image: string;
 }
 
 interface ShopTicket {
@@ -28,13 +29,13 @@ export class ShopComponent {
   activeTab = signal<'merch' | 'tickets'>('merch');
 
   products: Product[] = [
-    { id: 1, name: 'Vein & Voltage Tee',                      price: 'CHF 35', category: 'Apparel',     isNew: true  },
-    { id: 2, name: 'Crimson Moonflare Hoodie',                price: 'CHF 65', category: 'Apparel'                  },
-    { id: 3, name: 'Tour 2026 Tee',                           price: 'CHF 32', category: 'Apparel',     isNew: true  },
-    { id: 4, name: 'Logo Tee — Black',                        price: 'CHF 28', category: 'Apparel'                  },
-    { id: 5, name: 'Vein & Voltage Poster (A2)',              price: 'CHF 18', category: 'Accessories'              },
-    { id: 6, name: 'Enamel Pin Set',                          price: 'CHF 14', category: 'Accessories'              },
-    { id: 7, name: 'EP + Tee Bundle',                         price: 'CHF 48', category: 'Bundle',      isNew: true  },
+    { id: 1, name: 'Vein & Voltage Tee',     price: 'CHF 35', category: 'Apparel',     isNew: true, image: 'merch-vein-voltage-tee.png'  },
+    { id: 2, name: 'Crimson Moonflare Hoodie', price: 'CHF 65', category: 'Apparel',                 image: 'merch-crimson-hoodie.png'     },
+    { id: 3, name: 'Tour 2026 Tee',          price: 'CHF 32', category: 'Apparel',     isNew: true, image: 'merch-tour-2026-tee.png'      },
+    { id: 4, name: 'Logo Tee — Black',       price: 'CHF 28', category: 'Apparel',                  image: 'merch-logo-tee.png'           },
+    { id: 5, name: 'Vein & Voltage Poster (A2)', price: 'CHF 18', category: 'Accessories',          image: 'merch-vv-poster.png'          },
+    { id: 6, name: 'Enamel Pin Set',         price: 'CHF 14', category: 'Accessories',              image: 'merch-enamel-pins.png'        },
+    { id: 7, name: 'EP + Tee Bundle',        price: 'CHF 48', category: 'Bundle',      isNew: true, image: 'merch-ep-tee-bundle.png'      },
   ];
 
   tickets: ShopTicket[] = [

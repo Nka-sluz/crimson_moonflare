@@ -7,6 +7,7 @@ interface NewsItem {
   title: string;
   excerpt: string;
   isFeatured?: boolean;
+  image: string;
 }
 
 @Component({
@@ -24,6 +25,7 @@ export class NewsComponent {
       title: 'Vein & Voltage — Our Debut EP Is Out Now',
       excerpt: 'Five tracks. No filler. Recorded in three weeks and mixed in one sleepless sprint. Everything we\'ve been building toward is in these songs.',
       isFeatured: true,
+      image: 'news-ep-release.png',
     },
     {
       id: 2,
@@ -31,6 +33,7 @@ export class NewsComponent {
       category: 'Tour',
       title: 'European Tour 2026 Announced — 12 Cities',
       excerpt: 'We\'re taking the show across Europe this summer. Berlin, London, Paris, Amsterdam, and more. Tickets go on sale Friday.',
+      image: 'news-tour-announcement.png',
     },
     {
       id: 3,
@@ -38,6 +41,7 @@ export class NewsComponent {
       category: 'Behind the Scenes',
       title: 'Recording Diary: How "Ignite the Wound" Came Together',
       excerpt: 'Ash walks through the writing process for the EP opener — from a voice memo at 2am to the final take at the studio.',
+      image: 'news-recording-diary.png',
     },
     {
       id: 4,
@@ -45,6 +49,7 @@ export class NewsComponent {
       category: 'Release',
       title: '"Scarlet Static" Out Now — Our Second Single',
       excerpt: 'The bridge between the debut single and the full EP. Louder, stranger, and a bit more uncomfortable — exactly how we wanted it.',
+      image: 'news-scarlet-static.png',
     },
     {
       id: 5,
@@ -52,6 +57,7 @@ export class NewsComponent {
       category: 'Announcement',
       title: 'EP Release Show — Basel, Kaserne — Feb 28',
       excerpt: 'We\'re playing our first proper headline show to celebrate the EP announcement. Doors at 8. Support acts TBA.',
+      image: 'news-ep-show-announcement.png',
     },
     {
       id: 6,
@@ -59,6 +65,7 @@ export class NewsComponent {
       category: 'Release',
       title: '"Ignite the Wound" — Our First Single Is Out',
       excerpt: 'The first track we ever let out into the world. We wrote it in the van on the way back from our first rehearsal and never changed a word.',
+      image: 'news-first-single.png',
     },
   ];
 

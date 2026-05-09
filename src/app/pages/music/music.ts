@@ -18,6 +18,7 @@ interface Release {
   description?: string;
   isNew?: boolean;
   tracks: Track[];
+  image: string;
 }
 
 @Component({
@@ -38,6 +39,7 @@ export class MusicComponent {
       genre: 'Metalcore / Alternative',
       description: 'The debut EP. Five tracks that outline exactly what Crimson Moonflare is — loud, honest, and unafraid of being uncomfortable. Recorded in a basement, mixed like it belongs in an arena.',
       isNew: true,
+      image: 'music-vein-voltage-ep.png',
       tracks: [
         { num: '01', title: 'Ignite the Wound', duration: '3:42', tag: 'Single', playing: true },
         { num: '02', title: 'Scarlet Static',   duration: '4:11' },
@@ -51,6 +53,7 @@ export class MusicComponent {
       name: 'Scarlet Static',
       type: 'Single',
       date: 'Mar 2025',
+      image: 'music-scarlet-static.png',
       tracks: [
         { num: '01', title: 'Scarlet Static', duration: '4:11', playing: true },
       ]
@@ -60,6 +63,7 @@ export class MusicComponent {
       name: 'Hollow Signal',
       type: 'Single',
       date: 'Dec 2024',
+      image: 'music-hollow-signal.png',
       tracks: [
         { num: '01', title: 'Hollow Signal', duration: '3:55', playing: true },
       ]
@@ -69,6 +73,7 @@ export class MusicComponent {
       name: 'Ignite the Wound',
       type: 'Single',
       date: 'Nov 2024',
+      image: 'music-ignite-the-wound.png',
       tracks: [
         { num: '01', title: 'Ignite the Wound', duration: '3:42', tag: 'Single', playing: true },
       ]

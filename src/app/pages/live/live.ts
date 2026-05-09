@@ -16,6 +16,7 @@ interface PastShow {
   city: string;
   venue: string;
   label: string;
+  image: string;
 }
 
 @Component({
@@ -36,9 +37,9 @@ export class LiveComponent {
   ];
 
   pastShows: PastShow[] = [
-    { date: 'Dec 2024', city: 'Zurich',  venue: 'Dynamo',    label: 'Debut Show'    },
-    { date: 'Feb 2025', city: 'Basel',   venue: 'Kaserne',   label: 'EP Release'    },
-    { date: 'Apr 2025', city: 'Bern',    venue: 'ISC Club',  label: 'Support Act'   },
-    { date: 'May 2025', city: 'Geneva',  venue: "L'Usine",   label: 'Headline'      },
+    { date: 'Dec 2024', city: 'Zurich',  venue: 'Dynamo',    label: 'Debut Show',  image: 'past-show-zurich.png'  },
+    { date: 'Feb 2025', city: 'Basel',   venue: 'Kaserne',   label: 'EP Release',  image: 'past-show-basel.png'   },
+    { date: 'Apr 2025', city: 'Bern',    venue: 'ISC Club',  label: 'Support Act', image: 'past-show-bern.png'    },
+    { date: 'May 2025', city: 'Geneva',  venue: "L'Usine",   label: 'Headline',    image: 'past-show-geneva.png'  },
   ];
 }
