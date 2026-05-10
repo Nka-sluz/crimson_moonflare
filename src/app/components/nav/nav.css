@@ -3,13 +3,13 @@ nav {
   width: var(--nav-w);
   z-index: 100;
   display: flex; flex-direction: column;
-  padding: 48px 0 48px 40px;
+  padding: 28px 0 14px 40px;
   border-right: 1px solid rgba(192,24,42,0.18);
   background: linear-gradient(to right, rgba(10,6,8,0.97) 70%, rgba(10,6,8,0.0));
 }
 
 .nav-logo {
-  margin-bottom: 60px;
+  margin-bottom: 22px;
   display: flex; align-items: center; gap: 10px;
 }
 
@@ -42,7 +42,8 @@ nav ul {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding-right: 4px;
+  margin-left: -40px;
+  padding-left: 40px;
   scrollbar-width: thin;
   scrollbar-color: rgba(192,24,42,0.3) transparent;
 }
