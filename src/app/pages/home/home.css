@@ -306,7 +306,8 @@ main {
   }
 
   main {
-    padding-top: calc(var(--nav-top) + 36px); /* below mobile bar + tour strip */
+    top: calc(var(--nav-top) + 36px); /* shrink from top instead of padding, keeps moon + text co-centred */
+    padding-top: 0;
   }
 
   .band-name {
@@ -314,8 +315,22 @@ main {
   }
 
   .social-hint {
-    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    bottom: 20px;
+    right: 0;
+    left: 0;
+    gap: 0;
   }
+
+  .social-links {
+    flex-direction: row;
+    gap: 14px;
+  }
+
+  .social-line { display: none; }
+  .social-label { display: none; }
 
   .moon {
     width: 220px;

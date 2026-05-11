@@ -48,3 +48,5 @@ concepts/mindmap.html
 concepts/Grobkonzept_AiSafe.docx
 concepts/*.png
 concepts/node_modules/
+test-results/*
+e2e/screenshots/*
