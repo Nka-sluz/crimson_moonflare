@@ -385,6 +385,24 @@ main {
   .product-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .tickets-table { min-width: unset; }
+  .tickets-scroll { overflow-x: hidden; }
+  .tickets-header { display: none; }
+
+  .ticket-row {
+    grid-template-columns: 72px 1fr 100px;
+    grid-template-rows: auto auto auto;
+    gap: 2px 12px;
+    padding: 14px 24px;
+  }
+
+  .ticket-date   { grid-column: 1; grid-row: 1 / 4; align-self: center; }
+  .ticket-city   { grid-column: 2; grid-row: 1; font-size: 18px; align-self: end; }
+  .ticket-venue  { grid-column: 2; grid-row: 2; align-self: center; }
+  .ticket-price  { grid-column: 2; grid-row: 3; align-self: start; }
+  .ticket-status { display: none; }
+  .buy-btn       { grid-column: 3; grid-row: 1 / 4; align-self: center; width: 100%; padding: 10px 8px; font-size: 10px; text-align: center; }
 }
 
 /* ── RESPONSIVE ── */
@@ -427,7 +445,7 @@ main {
 
   .ticket-row {
     display: grid;
-    grid-template-columns: 56px 1fr auto;
+    grid-template-columns: 56px 1fr 100px;
     grid-template-rows: auto auto auto;
     column-gap: 12px;
     row-gap: 2px;
@@ -440,7 +458,7 @@ main {
   .ticket-venue  { grid-column: 2; grid-row: 2; font-size: 12px; align-self: center; color: var(--ash); }
   .ticket-price  { grid-column: 2; grid-row: 3; font-size: 13px; align-self: start; margin-top: 2px; }
   .ticket-status { display: none; }
-  .buy-btn       { grid-column: 3; grid-row: 1 / 4; align-self: center; padding: 8px 10px; font-size: 10px; }
+  .buy-btn       { grid-column: 3; grid-row: 1 / 4; align-self: center; width: 100%; padding: 10px 8px; font-size: 10px; text-align: center; }
 
   .tickets-note { font-size: 11px; }
 }
