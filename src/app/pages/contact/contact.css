@@ -136,6 +136,8 @@ textarea { resize: vertical; min-height: 140px; }
   margin-top: -4px;
 }
 
+.req { color: var(--ember); font-weight: 600; }
+
 .submit-btn {
   align-self: flex-start;
   padding: 13px 32px;
@@ -155,6 +157,14 @@ textarea { resize: vertical; min-height: 140px; }
 .submit-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+.form-hint-msg {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--ember);
+  letter-spacing: 0.05em;
+  margin-top: 8px;
 }
 
 /* ── SUCCESS STATE ── */

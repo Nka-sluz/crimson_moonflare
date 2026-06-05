@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 interface NewsItem {
   id: number;
@@ -13,7 +14,7 @@ interface NewsItem {
 
 @Component({
   selector: 'app-news',
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule],
   templateUrl: './news.html',
   styleUrl: './news.css'
 })
@@ -92,5 +93,40 @@ export class NewsComponent {
 
   get otherPosts(): NewsItem[] {
     return this.news.filter(n => !n.isFeatured);
+  }
+
+  // ── Newsletter ──
+  showNewsletter = signal(false);
+  nlSubmitted    = signal(false);
+  nlEmailTouched = signal(false);
+
+  nlEmail = '';
+  nlOptions = { general: false, concerts: false };
+
+  get nlEmailValid(): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.nlEmail.trim());
+  }
+
+  get nlOptionsValid(): boolean {
+    return this.nlOptions.general || this.nlOptions.concerts;
+  }
+
+  get nlFormValid(): boolean {
+    return this.nlEmailValid && this.nlOptionsValid;
+  }
+
+  openNewsletter(): void {
+    this.nlSubmitted.set(false);
+    this.nlEmailTouched.set(false);
+    this.nlEmail = '';
+    this.nlOptions = { general: false, concerts: false };
+    this.showNewsletter.set(true);
+  }
+
+  submitNewsletter(): void {
+    this.nlEmailTouched.set(true);
+    if (this.nlFormValid) {
+      this.nlSubmitted.set(true);
+    }
   }
 }

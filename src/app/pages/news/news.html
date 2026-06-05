@@ -45,4 +45,73 @@
     </div>
   </div>
 
+  <!-- NEWSLETTER SECTION -->
+  <div class="newsletter-section">
+    <div class="newsletter-eyebrow">Stay in the Loop</div>
+    <h3 class="newsletter-title">Join the Newsletter</h3>
+    <p class="newsletter-text">New music, tour dates, and band news — straight to your inbox. No spam.</p>
+    <button class="newsletter-btn" (click)="openNewsletter()">Sign Up &rarr;</button>
+  </div>
+
 </main>
+
+<!-- NEWSLETTER MODAL -->
+@if (showNewsletter()) {
+  <div class="nl-backdrop" (click)="showNewsletter.set(false)"></div>
+  <div class="nl-modal" role="dialog" aria-modal="true" aria-label="Newsletter sign up">
+
+    @if (!nlSubmitted()) {
+      <button class="nl-close" (click)="showNewsletter.set(false)" aria-label="Close">&times;</button>
+
+      <div class="nl-modal-eyebrow">Newsletter</div>
+      <h3 class="nl-modal-title">Sign Up</h3>
+      <p class="nl-modal-desc">Choose what you'd like to receive — select at least one:</p>
+
+      <div class="nl-options">
+        <label class="nl-option" [class.checked]="nlOptions.general">
+          <input type="checkbox" [(ngModel)]="nlOptions.general" name="nlGeneral">
+          <span class="nl-checkbox"></span>
+          <span class="nl-option-text">General News &amp; Updates</span>
+        </label>
+        <label class="nl-option" [class.checked]="nlOptions.concerts">
+          <input type="checkbox" [(ngModel)]="nlOptions.concerts" name="nlConcerts">
+          <span class="nl-checkbox"></span>
+          <span class="nl-option-text">Concerts &amp; Tour Announcements</span>
+        </label>
+      </div>
+
+      @if (nlEmailTouched() && !nlOptionsValid) {
+        <span class="nl-error">Select at least one option to continue.</span>
+      }
+
+      <div class="nl-input-wrap">
+        <input type="email" class="nl-input" placeholder="your@email.com"
+               [(ngModel)]="nlEmail" name="nlEmail"
+               (blur)="nlEmailTouched.set(true)">
+        @if (nlEmailTouched() && !nlEmailValid) {
+          <span class="nl-error">
+            @if (!nlEmail.trim()) { Email address is required. }
+            @else { Enter a valid email — e.g. you&#64;example.com }
+          </span>
+        }
+      </div>
+
+      <button class="nl-submit" (click)="submitNewsletter()">
+        Subscribe &rarr;
+      </button>
+
+    } @else {
+
+      <div class="nl-success">
+        <div class="nl-success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="nl-success-title">You're In</div>
+        <p class="nl-success-text">Thanks for signing up. We'll be in touch.</p>
+        <button class="nl-close-btn" (click)="showNewsletter.set(false)">Close</button>
+      </div>
+
+    }
+
+  </div>
+}

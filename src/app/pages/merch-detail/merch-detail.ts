@@ -24,11 +24,17 @@ export class MerchDetailComponent implements OnInit {
 
   product: MerchProduct | null = null;
   submitted = signal(false);
+  nameTouched  = signal(false);
+  emailTouched = signal(false);
 
   selectedSize = signal('M');
   quantity = signal(1);
   name = '';
   email = '';
+
+  get emailValid(): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email.trim());
+  }
 
   products: MerchProduct[] = [
     {
@@ -111,7 +117,9 @@ export class MerchDetailComponent implements OnInit {
   increment() { if (this.quantity() < 10) this.quantity.update(q => q + 1); }
 
   purchase() {
-    if (this.name.trim() && this.email.trim()) {
+    this.nameTouched.set(true);
+    this.emailTouched.set(true);
+    if (this.name.trim() && this.emailValid) {
       this.submitted.set(true);
     }
   }

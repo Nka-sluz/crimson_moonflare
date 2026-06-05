@@ -297,13 +297,13 @@ main {
   gap: 16px;
   align-items: center;
   padding: 10px 60px 10px 24px;
-  cursor: default;
+  cursor: pointer;
   transition: background 0.15s;
   border-bottom: 1px solid rgba(192,24,42,0.04);
 }
 
 .detail-track:hover  { background: rgba(192,24,42,0.05); }
-.detail-track.playing { background: rgba(192,24,42,0.08); }
+.detail-track.active { background: rgba(192,24,42,0.08); }
 
 .track-play {
   width: 32px; height: 32px;
@@ -322,7 +322,7 @@ main {
   color: var(--pale);
 }
 
-.detail-track.playing .track-play {
+.detail-track.active .track-play {
   border-color: var(--ember);
   background: rgba(255,77,26,0.12);
   color: var(--ember);
@@ -344,15 +344,20 @@ main {
   height: 14px;
 }
 
-.detail-track.playing .playing-bars { display: flex; }
-.detail-track.playing .track-num-text { display: none; }
+/* Show bars when track is active (paused or playing) */
+.detail-track.active .playing-bars { display: flex; }
+.detail-track.active .track-num-text { display: none; }
 
 .bar {
   width: 3px;
   background: var(--ember);
   border-radius: 1px;
   animation: bar-pulse var(--spd) ease-in-out infinite alternate;
+  animation-play-state: paused; /* bars frozen when paused */
 }
+
+/* Only animate when the track is actually playing */
+.detail-track.playing .bar { animation-play-state: running; }
 
 @keyframes bar-pulse {
   from { height: 3px; opacity: 0.6; }
@@ -369,7 +374,18 @@ main {
   text-overflow: ellipsis;
 }
 
-.detail-track.playing .track-title-text { color: var(--ember); }
+.detail-track.active .track-title-text { color: var(--ember); }
+
+.track-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* Right-align the Duration column header to match track-dur data */
+.tracklist-header span:last-child { text-align: right; }
 
 .track-tag {
   font-family: 'Bebas Neue', sans-serif;
@@ -379,6 +395,25 @@ main {
   border: 1px solid rgba(192,24,42,0.3);
   padding: 2px 7px;
   white-space: nowrap;
+}
+
+.track-spotify {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; height: 24px;
+  color: rgba(168,152,136,0.4);
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.track-spotify svg {
+  width: 14px; height: 14px;
+  fill: currentColor;
+}
+
+.track-spotify:hover {
+  color: #1DB954;
 }
 
 .track-dur {
@@ -466,7 +501,7 @@ main {
     gap: 10px;
   }
 
-  /* Hide tag column; duration shifts into 4th position */
-  .track-tag { display: none; }
+  /* Hide actions column on mobile; duration shifts into 4th position */
+  .track-actions { display: none; }
   .tracklist-header span:nth-child(4) { display: none; }
 }

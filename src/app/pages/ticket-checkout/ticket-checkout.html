@@ -94,15 +94,27 @@
           <div class="form-section">
             <div class="form-section-label">Your Details</div>
             <div class="input-group">
-              <label class="input-label" for="name">Full Name</label>
+              <label class="input-label" for="name">Full Name <span class="req">*</span></label>
               <input id="name" class="form-input" type="text" placeholder="Jane Smith"
-                     [(ngModel)]="name" name="name" autocomplete="name">
+                     [(ngModel)]="name" name="name" autocomplete="name"
+                     (blur)="nameTouched.set(true)">
+              @if (nameTouched() && !name.trim()) {
+                <div class="field-error">Full name is required.</div>
+              }
             </div>
             <div class="input-group">
-              <label class="input-label" for="email">Email Address</label>
+              <label class="input-label" for="email">Email Address <span class="req">*</span></label>
               <input id="email" class="form-input" type="email" placeholder="jane@example.com"
-                     [(ngModel)]="email" name="email" autocomplete="email">
-              <div class="input-hint">Tickets will be sent to this address.</div>
+                     [(ngModel)]="email" name="email" autocomplete="email"
+                     (blur)="emailTouched.set(true)">
+              @if (emailTouched() && !emailValid) {
+                <div class="field-error">
+                  @if (!email.trim()) { Email address is required. }
+                  @else { Enter a valid email — e.g. you&#64;example.com }
+                </div>
+              } @else {
+                <div class="input-hint">Tickets will be sent to this address.</div>
+              }
             </div>
           </div>
 
@@ -119,7 +131,7 @@
           </div>
 
           <button class="checkout-btn" (click)="checkout()"
-                  [disabled]="!name.trim() || !email.trim()">
+                  [disabled]="!name.trim() || !emailValid">
             Complete Purchase &rarr;
           </button>
 

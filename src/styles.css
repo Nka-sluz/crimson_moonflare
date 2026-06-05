@@ -70,6 +70,22 @@ a, button, [role="button"], input, select, textarea, label {
 ::-webkit-scrollbar-thumb { background: rgba(192,24,42,0.35); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(192,24,42,0.6); }
 
+/* ── HIGH CONTRAST MODE ── */
+html.high-contrast {
+  --pale: #ffffff;
+  --ash:  #ffffff;
+}
+
+/* Force all text to white — covers every hardcoded rgba() color in every component */
+html.high-contrast * {
+  color: white !important;
+}
+
+/* Slightly dim placeholder text so it's distinguishable from entered text */
+html.high-contrast *::placeholder {
+  color: rgba(255,255,255,0.35) !important;
+}
+
 /* Respect user preference for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

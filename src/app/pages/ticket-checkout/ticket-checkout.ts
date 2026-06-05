@@ -24,12 +24,18 @@ export class TicketCheckoutComponent implements OnInit {
   private route = inject(ActivatedRoute);
 
   show: Show | null = null;
-  submitted = signal(false);
+  submitted    = signal(false);
+  nameTouched  = signal(false);
+  emailTouched = signal(false);
 
   ticketType = signal<'general' | 'vip'>('general');
   quantity = signal(2);
   name = '';
   email = '';
+
+  get emailValid(): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email.trim());
+  }
 
   shows: Show[] = [
     { city: 'Berlin',    country: 'Germany',    venue: 'Columbiahalle',        month: 'Jun', day: '14', year: '2026', basePrice: 28, vipPrice: 58, status: 'available' },
@@ -59,7 +65,9 @@ export class TicketCheckoutComponent implements OnInit {
   increment() { if (this.quantity() < 8) this.quantity.update(q => q + 1); }
 
   checkout() {
-    if (this.name.trim() && this.email.trim()) {
+    this.nameTouched.set(true);
+    this.emailTouched.set(true);
+    if (this.name.trim() && this.emailValid) {
       this.submitted.set(true);
     }
   }

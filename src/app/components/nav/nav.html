@@ -33,26 +33,42 @@
     <li routerLinkActive="active"><a routerLink="/contact" (click)="close()">Contact</a></li>
   </ul>
 
+  <!-- HIGH CONTRAST TOGGLE -->
+  <div class="hc-row">
+    <span class="hc-label">High Contrast</span>
+    <button class="hc-switch" [class.on]="theme.isHighContrast()" (click)="theme.toggle()"
+            [attr.aria-pressed]="theme.isHighContrast()" aria-label="Toggle high contrast mode">
+      <span class="hc-thumb"></span>
+    </button>
+  </div>
+
+  <!-- MINI PLAYER -->
   <div class="mini-player">
     <div class="mini-player-label">Now Playing</div>
     <div class="mini-player-track">
       <div class="mini-player-art">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="2"/></svg>
+        <img [src]="audio.currentCover()" [alt]="audio.currentTitle()">
       </div>
       <div class="mini-player-info">
-        <div class="mini-player-title">Ignite the Wound</div>
-        <div class="mini-player-sub">Vein &amp; Voltage</div>
+        <div class="mini-player-title">{{ audio.currentTitle() }}</div>
+        <div class="mini-player-sub">{{ audio.currentAlbum() }}</div>
       </div>
     </div>
-    <div class="mini-player-bar"></div>
+    <div class="mini-player-bar" (click)="onSeek($event)" title="{{ audio.currentTimeStr() }}">
+      <div class="mini-player-progress" [style.width.%]="audio.progress() * 100"></div>
+    </div>
     <div class="mini-player-controls">
-      <div class="mini-ctrl">
+      <div class="mini-ctrl" (click)="audio.prev()" title="Previous">
         <svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
       </div>
-      <div class="mini-ctrl play">
-        <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      <div class="mini-ctrl play" (click)="audio.toggle()" [title]="audio.isPlaying() ? 'Pause' : 'Play'">
+        @if (audio.isPlaying()) {
+          <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        } @else {
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        }
       </div>
-      <div class="mini-ctrl">
+      <div class="mini-ctrl" (click)="audio.next()" title="Next">
         <svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
       </div>
     </div>

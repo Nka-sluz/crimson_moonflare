@@ -22,22 +22,29 @@
 
           <div class="field-row">
             <div class="field">
-              <label for="name">Name</label>
+              <label for="name">Name <span class="req">*</span></label>
               <input id="name" name="name" type="text" placeholder="Your name"
-                     [(ngModel)]="form.name" required />
+                     [(ngModel)]="form.name" required #nameField="ngModel" />
+              @if (nameField.invalid && nameField.touched) {
+                <span class="field-error">Name is required.</span>
+              }
             </div>
             <div class="field">
-              <label for="email">Email</label>
+              <label for="email">Email <span class="req">*</span></label>
               <input id="email" name="email" type="email" placeholder="your@email.com"
                      [(ngModel)]="form.email" required email #emailField="ngModel" />
               @if (emailField.invalid && emailField.touched) {
-                <span class="field-error">Enter a valid email address.</span>
+                @if (emailField.errors?.['required']) {
+                  <span class="field-error">Email address is required.</span>
+                } @else {
+                  <span class="field-error">Enter a valid email — e.g. you&#64;example.com</span>
+                }
               }
             </div>
           </div>
 
           <div class="field">
-            <label for="type">Inquiry Type</label>
+            <label for="type">Inquiry Type <span class="req">*</span></label>
             <div class="select-wrap">
               <select id="type" name="type" [(ngModel)]="form.type">
                 <option value="fan">Fan Message</option>
@@ -50,10 +57,13 @@
           </div>
 
           <div class="field">
-            <label for="message">Message</label>
+            <label for="message">Message <span class="req">*</span></label>
             <textarea id="message" name="message" rows="6"
                       placeholder="Tell us what's on your mind…"
-                      [(ngModel)]="form.message" required></textarea>
+                      [(ngModel)]="form.message" required #messageField="ngModel"></textarea>
+            @if (messageField.invalid && messageField.touched) {
+              <span class="field-error">Please include a message before sending.</span>
+            }
           </div>
 
           <button type="submit" class="submit-btn" [disabled]="contactForm.invalid">

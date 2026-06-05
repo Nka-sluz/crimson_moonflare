@@ -287,6 +287,268 @@ a.card-image:hover img { transform: scale(1.04); }
   border-color: var(--ember);
 }
 
+/* ── NEWSLETTER SECTION ── */
+.newsletter-section {
+  border-top: 1px solid rgba(192,24,42,0.12);
+  padding: 64px 0 80px;
+  text-align: center;
+}
+
+.newsletter-eyebrow {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.45em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.newsletter-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 900;
+  font-size: clamp(22px, 2.5vw, 36px);
+  color: var(--pale);
+  margin-bottom: 14px;
+}
+
+.newsletter-text {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--ash);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.newsletter-btn {
+  padding: 13px 36px;
+  background: var(--crimson);
+  border: none;
+  color: var(--pale);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.newsletter-btn:hover {
+  background: var(--blood);
+}
+
+/* ── NEWSLETTER MODAL ── */
+.nl-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 400;
+  backdrop-filter: blur(4px);
+}
+
+.nl-modal {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 401;
+  background: var(--charcoal);
+  border: 1px solid rgba(192,24,42,0.3);
+  width: min(440px, calc(100vw - 40px));
+  padding: 40px;
+}
+
+.nl-close {
+  position: absolute;
+  top: 16px; right: 18px;
+  background: none;
+  border: none;
+  color: var(--ash);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 4px;
+}
+
+.nl-close:hover { color: var(--pale); }
+
+.nl-modal-eyebrow {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.45em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.nl-modal-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--pale);
+  margin-bottom: 10px;
+}
+
+.nl-modal-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ash);
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.nl-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.nl-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 12px 14px;
+  border: 1px solid rgba(192,24,42,0.15);
+  transition: border-color 0.15s, background 0.15s;
+  user-select: none;
+}
+
+.nl-option:hover {
+  border-color: rgba(192,24,42,0.4);
+  background: rgba(192,24,42,0.04);
+}
+
+.nl-option.checked {
+  border-color: var(--crimson);
+  background: rgba(192,24,42,0.08);
+}
+
+.nl-option input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0; height: 0;
+}
+
+.nl-checkbox {
+  width: 16px; height: 16px;
+  border: 1px solid rgba(192,24,42,0.4);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+
+.nl-option.checked .nl-checkbox::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: var(--crimson);
+}
+
+.nl-option-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--pale);
+  letter-spacing: 0.02em;
+}
+
+.nl-error {
+  display: block;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--ember);
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.nl-input-wrap {
+  margin: 16px 0 20px;
+}
+
+.nl-input {
+  width: 100%;
+  background: rgba(10,6,8,0.6);
+  border: 1px solid rgba(192,24,42,0.25);
+  color: var(--pale);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 11px 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.nl-input:focus { border-color: rgba(192,24,42,0.6); }
+.nl-input::placeholder { color: rgba(168,152,136,0.35); }
+
+.nl-submit {
+  width: 100%;
+  padding: 13px;
+  background: var(--crimson);
+  border: none;
+  color: var(--pale);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.nl-submit:hover { background: var(--blood); }
+
+/* ── NEWSLETTER SUCCESS ── */
+.nl-success {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.nl-success-icon {
+  width: 52px; height: 52px;
+  border: 1px solid rgba(192,24,42,0.5);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.nl-success-icon svg {
+  width: 22px; height: 22px;
+  fill: none;
+  stroke: var(--crimson);
+  stroke-width: 2;
+}
+
+.nl-success-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.1em;
+  color: var(--pale);
+  margin-bottom: 10px;
+}
+
+.nl-success-text {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--ash);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.nl-close-btn {
+  padding: 10px 28px;
+  border: 1px solid rgba(192,24,42,0.4);
+  background: none;
+  color: var(--ash);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nl-close-btn:hover { color: var(--pale); border-color: var(--crimson); }
+
 /* ── TABLET ── */
 @media (min-width: 769px) and (max-width: 1024px) {
   main {
@@ -329,4 +591,7 @@ a.card-image:hover img { transform: scale(1.04); }
     grid-template-columns: 1fr;
     margin-top: 28px;
   }
+
+  .newsletter-section { padding: 48px 0 60px; }
+  .nl-modal { padding: 28px 24px; }
 }

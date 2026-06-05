@@ -1,10 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { AudioService } from '../../services/audio.service';
+
 interface Track {
   num: string;
   title: string;
   duration: string;
   tag?: string;
-  playing?: boolean;
 }
 
 interface Release {
@@ -28,6 +29,8 @@ interface Release {
   styleUrl: './music.css'
 })
 export class MusicComponent {
+  audio = inject(AudioService);
+
   releases: Release[] = [
     {
       id: 1,
@@ -41,7 +44,7 @@ export class MusicComponent {
       isNew: true,
       image: 'music-vein-voltage-ep.png',
       tracks: [
-        { num: '01', title: 'Ignite the Wound', duration: '3:42', tag: 'Single', playing: true },
+        { num: '01', title: 'Ignite the Wound', duration: '3:42', tag: 'Single' },
         { num: '02', title: 'Scarlet Static',   duration: '4:11' },
         { num: '03', title: 'Below the Signal', duration: '3:58' },
         { num: '04', title: 'Glass Meridian',   duration: '3:27' },
@@ -55,7 +58,7 @@ export class MusicComponent {
       date: 'Mar 2025',
       image: 'music-scarlet-static.png',
       tracks: [
-        { num: '01', title: 'Scarlet Static', duration: '4:11', playing: true },
+        { num: '01', title: 'Scarlet Static', duration: '4:11' },
       ]
     },
     {
@@ -65,7 +68,7 @@ export class MusicComponent {
       date: 'Dec 2024',
       image: 'music-hollow-signal.png',
       tracks: [
-        { num: '01', title: 'Hollow Signal', duration: '3:55', playing: true },
+        { num: '01', title: 'Hollow Signal', duration: '3:55' },
       ]
     },
     {
@@ -75,7 +78,7 @@ export class MusicComponent {
       date: 'Nov 2024',
       image: 'music-ignite-the-wound.png',
       tracks: [
-        { num: '01', title: 'Ignite the Wound', duration: '3:42', tag: 'Single', playing: true },
+        { num: '01', title: 'Ignite the Wound', duration: '3:42', tag: 'Single' },
       ]
     },
   ];
@@ -88,5 +91,24 @@ export class MusicComponent {
 
   select(id: number): void {
     this.selectedId.set(id);
+  }
+
+  handleTrack(track: Track): void {
+    if (this.audio.currentTitle() === track.title && this.audio.currentAlbum() === this.selected.name) {
+      this.audio.toggle();
+    } else {
+      this.audio.playTrack(track.title, this.selected.name);
+    }
+  }
+
+  isTrackPlaying(track: Track): boolean {
+    return this.audio.isPlaying() &&
+           this.audio.currentTitle() === track.title &&
+           this.audio.currentAlbum() === this.selected.name;
+  }
+
+  isTrackActive(track: Track): boolean {
+    return this.audio.currentTitle() === track.title &&
+           this.audio.currentAlbum() === this.selected.name;
   }
 }
