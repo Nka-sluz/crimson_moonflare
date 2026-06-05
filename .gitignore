@@ -45,8 +45,11 @@ Thumbs.db
 
 # custom
 concepts/mindmap.html
-concepts/Grobkonzept_AiSafe.docx
+concepts/Grobkonzept*
 concepts/*.png
+concepts/*.pdf
+concepts/*.docx
 concepts/node_modules/
 test-results/*
 e2e/screenshots/*
+concepts/desktop.ini
