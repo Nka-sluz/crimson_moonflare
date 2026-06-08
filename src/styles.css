@@ -85,6 +85,27 @@ html.high-contrast *::placeholder {
   color: rgba(255,255,255,0.35) !important;
 }
 
+/* Image loading skeleton */
+@keyframes img-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.img-skeleton {
+  overflow: hidden;
+  background: linear-gradient(90deg, #130c0e 25%, #231318 50%, #130c0e 75%);
+  background-size: 200% 100%;
+  animation: img-shimmer 1.4s linear infinite;
+}
+
+img {
+  transition: opacity 0.35s ease;
+}
+
+img.img-loading {
+  opacity: 0;
+}
+
 /* Respect user preference for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -2,6 +2,7 @@ import { Component, OnInit, inject, DestroyRef } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { combineLatest } from 'rxjs';
+import { ImgLoadDirective } from '../../directives/img-load.directive';
 
 interface NewsArticle {
   id: number;
@@ -16,7 +17,7 @@ interface NewsArticle {
 
 @Component({
   selector: 'app-news-article',
-  imports: [RouterLink],
+  imports: [RouterLink, ImgLoadDirective],
   templateUrl: './news-article.html',
   styleUrl: './news-article.css'
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, DestroyRef } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ImgLoadDirective } from '../../directives/img-load.directive';
 
 interface PastShowDetail {
   id: number;
@@ -17,7 +18,7 @@ interface PastShowDetail {
 
 @Component({
   selector: 'app-past-show',
-  imports: [RouterLink],
+  imports: [RouterLink, ImgLoadDirective],
   templateUrl: './past-show.html',
   styleUrl: './past-show.css'
 })

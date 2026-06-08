@@ -1,5 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { AudioService } from '../../services/audio.service';
+import { ImgLoadDirective } from '../../directives/img-load.directive';
 
 interface Track {
   num: string;
@@ -24,7 +25,7 @@ interface Release {
 
 @Component({
   selector: 'app-music',
-  imports: [],
+  imports: [ImgLoadDirective],
   templateUrl: './music.html',
   styleUrl: './music.css'
 })

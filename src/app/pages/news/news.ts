@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ImgLoadDirective } from '../../directives/img-load.directive';
 
 interface NewsItem {
   id: number;
@@ -14,7 +15,7 @@ interface NewsItem {
 
 @Component({
   selector: 'app-news',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, ImgLoadDirective],
   templateUrl: './news.html',
   styleUrl: './news.css'
 })

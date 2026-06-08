@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ImgLoadDirective } from '../../directives/img-load.directive';
 
 interface MerchProduct {
   id: number;
@@ -15,7 +16,7 @@ interface MerchProduct {
 
 @Component({
   selector: 'app-merch-detail',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, ImgLoadDirective],
   templateUrl: './merch-detail.html',
   styleUrl: './merch-detail.css'
 })

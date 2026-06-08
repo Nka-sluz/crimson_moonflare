@@ -2,10 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AudioService } from '../../services/audio.service';
 import { ThemeService } from '../../services/theme.service';
+import { ImgLoadDirective } from '../../directives/img-load.directive';
 
 @Component({
   selector: 'app-nav',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, ImgLoadDirective],
   templateUrl: './nav.html',
   styleUrl: './nav.css'
 })

@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ImgLoadDirective } from '../../directives/img-load.directive';
 
 interface Product {
   id: number;
@@ -22,7 +23,7 @@ interface ShopTicket {
 
 @Component({
   selector: 'app-shop',
-  imports: [RouterLink],
+  imports: [RouterLink, ImgLoadDirective],
   templateUrl: './shop.html',
   styleUrl: './shop.css'
 })

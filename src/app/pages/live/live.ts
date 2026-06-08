@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ImgLoadDirective } from '../../directives/img-load.directive';
 
 interface Show {
   date: string;
@@ -23,7 +24,7 @@ interface PastShow {
 
 @Component({
   selector: 'app-live',
-  imports: [RouterLink],
+  imports: [RouterLink, ImgLoadDirective],
   templateUrl: './live.html',
   styleUrl: './live.css'
 })
