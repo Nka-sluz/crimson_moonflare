@@ -20,6 +20,7 @@ Die evaluierte Website wurde für die fiktive Band **Crimson Moonflare** entwick
 
 - **Band-Identität / Bio** – Bandgeschichte, Mitglieder, künstlerische Vision
 - **Musik / Diskografie** – Releases mit Tracklisten und Streaming-Verlinkungen (geplant)
+- **News / Aktuelles** – Beiträge zu Band-Neuigkeiten, Releases und Tourankündigungen; inkl. Newsletter-Anmeldung mit Themenwahl (Allgemeine News oder Konzerte/Tour)
 - **Tour / Live** – Konzerttermine mit Statusanzeige und Ticket-Kaufflow
 - **Shop** – Merchandise-Produkte und Tickets mit simuliertem Checkout (Stripe-Integration geplant)
 - **Kontakt / Booking** – Kontaktformular für Veranstalter und Fans
@@ -46,12 +47,7 @@ Die heuristische Evaluation wurde als Expertenevaluation nach den **10 Usability
 
 ### 2.3 Kommentar
 
-Die Heuristik **H1 – Sichtbarkeit des Systemstatus** wurde am häufigsten benannt (Probleme 1, 2 und 3). Bei näherer Betrachtung relativieren sich mehrere Befunde jedoch im Kontext des Projekts:
-
-- **Problem 1 (Copyright-Jahr):** Das Copyright-Jahr bezieht sich auf das Jahr der Erstveröffentlichung bzw. Urheberrechtserteilung, nicht auf das laufende Kalenderjahr. «© 2025» ist daher korrekt und entspricht gängiger Praxis – kein Handlungsbedarf.
-- **Probleme 2 & 3 (nicht funktionale Buttons):** Der Mini-Player in der Sidebar und die Track-Play-Buttons auf der Musikseite sind bewusst als visuelle Vorschau einer geplanten Funktion eingebaut – die Audio-Integration ist für ein kommendes Website-Update vorgesehen. Die Streaming-Buttons (Spotify, YouTube, Apple Music) sind vorhanden und auffindbar; echte Verlinkungen sind für eine fiktive Band naturgemäss nicht möglich. Die heuristische Beobachtung ist nachvollziehbar und bleibt im Protokoll, da das Fehlen einer Reaktion auf Klicks kurzfristig irritieren kann – die geplante Implementierung wird dies beheben.
-- **Problem 4 (Startseite):** Die Startseite ist bewusst auf den ersten visuellen Eindruck ausgerichtet; zusätzliche Textinhalte würden den Hero-Bereich überladen. Die dafür vorgesehene «Who We Are»-Seite erfüllt genau diesen Informationsbedarf – die Navigation dorthin ist klar und direkt erreichbar.
-- **Problem 5 (Kontrast):** Der Kontrast der Website wurde vor dem Launch gezielt angepasst, um für den allgemeinen Nutzer eine vollständige Lesbarkeit aller Textelemente sicherzustellen. Für Nutzer mit erhöhtem Kontrastbedarf ist ein High-Contrast-Modus in Planung. Die Beobachtung ist als Sensibilisierung für unterschiedliche Nutzungskontexte wertvoll, stellt aber keinen aktuellen Mangel dar.
+**H1 – Sichtbarkeit des Systemstatus** dominiert das Ergebnis mit drei von fünf Befunden – das Muster ist eindeutig: Die Website kommuniziert ihren Zustand bei interaktiven Elementen nicht konsequent genug. Das eigentliche Kernproblem sind die nicht-reagierenden Buttons: Mini-Player und Play-Icons wirkten fertig gestaltet, taten aber nichts – ein klassischer H1-Verstoss, der zurecht Severity 3 erhielt. Nicht valide sind Problem 1 (das Copyright-Jahr 2025 ist korrekt) und Problem 4 (die Startseite folgt einer bewussten Designentscheidung, kein Usability-Versehen). Die übrigen drei Befunde lieferten verwertbares Feedback: Probleme 2 und 3 (Severity 3) wurden durch den Nutzertest bestätigt und direkt behoben; Problem 5 war zwar theoretisch formuliert, hat aber zur Umsetzung des High-Contrast-Modus geführt. Die Formulierung einzelner Befunde ist stellenweise unprofessionell und ungenau, mindert jedoch nicht den Wert der Beobachtungen als solche.
 
 ---
 
@@ -73,7 +69,7 @@ Der Nutzertest wurde als **Think-Aloud-Session** durchgeführt. Die Testperson k
 
 | # | Task | Beobachtetes Verhalten | Auffälligkeiten / Probleme | Ergebnis |
 |---|---|---|---|---|
-| 1 | Ersteindruck & Band-Identität | Testperson navigiert zur Seite «Who We Are» und liest Informationen über die Band und die Mitglieder. Besucht danach die Live-Seite und sieht die bevorstehenden Tourdaten sowie die Möglichkeit, Tickets zu kaufen. Schaut sich die Musik- und die Newsseite an. | Keine grösseren Probleme. Testperson bekommt ein gutes, kohärentes Bild von der Band. | ✅ Erfolgreich |
+| 1 | Ersteindruck & Band-Identität | Testperson navigiert zur Seite «Who We Are» und liest Informationen über die Band und die Mitglieder. Besucht danach die News-Seite, liest Beiträge zu Releases und Tourankündigungen. Wechselt zur Live-Seite und sieht die bevorstehenden Tourdaten sowie die Möglichkeit, Tickets zu kaufen. Schaut sich auch die Musikseite an. | Keine Probleme. Die News-Seite wurde ohne Zögern gefunden und als Teil des Band-Kennenlernens natürlich einbezogen. Testperson bekommt ein gutes, kohärentes Bild von der Band. | ✅ Erfolgreich |
 | 2 | Konzertticket finden und kaufen | Testperson navigiert zur Live-Seite. Das Konzert im Juni ist ausverkauft; es wird ein alternatives Datum in Paris ausgewählt. Findet die Ticket-Kaufseite erfolgreich und schliesst den Kauf ab. | Kein Abbruch, keine Verwirrung. Ausverkaufter Status war sofort erkennbar. | ✅ Erfolgreich |
 | 3 | Merch kaufen | Testperson navigiert zur Shop-Seite, wählt Artikel aus, klickt auf «Buy Now», füllt das Formular aus und schliesst den Kauf erfolgreich ab. | Keine Probleme festgestellt. Der Ablauf ist flüssig und intuitiv. | ✅ Erfolgreich |
 | 4 | Musik entdecken (ab Shop, Smartphone) | Testperson navigiert von der Startseite zur Musikseite und findet die Releases. Streaming-Service-Buttons (Spotify, YouTube, Apple Music) sind vorhanden und auffindbar. | Testperson sucht nach songgenauen Direktlinks und ist kurz unsicher; erwartet, einzelne Tracks direkt abspielen zu können. Da es sich um eine fiktive Band handelt, sind keine realen Streaming-Profile verlinkbar. | ⚠️ Teilerfolg |
@@ -81,11 +77,7 @@ Der Nutzertest wurde als **Think-Aloud-Session** durchgeführt. Die Testperson k
 
 ### 3.3 Kommentar
 
-Die Testperson war vor allem überrascht davon, dass die Streaming-Buttons auf der Musikseite nicht auf Spotify oder YouTube weiterleiten – sie hatte erwartet, direkt von der Website aus Tracks aufrufen zu können. Dieser Befund bestätigt heuristisches Problem 3: Die Buttons sind visuell vorhanden, tun aber nichts. Es ist festzuhalten, dass die Verlinkung zu Streaming-Plattformen im Evaluationsplan (Abschnitt 15.2) unter «Musik / Diskografie» explizit als zu prüfender Bereich aufgeführt ist – die fehlende Integration ist damit keine absichtliche Auslassung aus dem Scope, sondern ein noch offener Entwicklungsstand.
-
-Das fehlende E-Mail-Validierungsfeld im Ticket-Formular ist im Kontext des Prototyps einzuordnen: Der echte Zahlungsprozess mit Stripe-Integration wurde bewusst aus dem Testscope ausgenommen (vgl. 15.2: «Echter Zahlungsprozess – Stripe-Integration ist simuliert, kein realer Checkout»). Die fehlende Validierung ist daher eine bekannte Einschränkung des aktuellen Entwicklungsstands, sollte aber vor einem echten Launch behoben werden.
-
-Die Testperson war auf der Musikseite kurz unsicher, weil sie erwartet hatte, einzelne Songs direkt abspielen zu können – ein Moment, der die heuristische Kritik an den Play-Icons bestätigt. Die Streaming-Service-Buttons (Spotify, YouTube, Apple Music) wurden gefunden; dass sie zu keinem echten Profil führen, ist der fiktiven Natur des Projekts geschuldet und kein Designfehler. Besser als erwartet lief der gesamte Shop-Flow: Merch-Kauf und Ticket-Checkout wurden ohne Abbruch abgeschlossen, die Formularvalidierung (deaktivierter Button, E-Mail-Inputtyp) wurde nicht beanstandet. Auch Statusanzeigen («Sold Out», «On Sale») und die Navigation zwischen den Seiten wurden positiv wahrgenommen.
+Die stärkste Auffälligkeit war die kurze Unsicherheit beim Klick auf Play-Icons, die nichts taten – ein direkter Beleg für heuristisches Problem 2/3. Alle anderen Bereiche liefen besser als erwartet: Shop-Flow, Ticket-Checkout und Formularvalidierung wurden ohne Abbruch abgeschlossen, Statusanzeigen («Sold Out», «On Sale») und die Navigation wurden nicht beanstandet.
 
 ---
 
@@ -101,6 +93,9 @@ Drei weitere Punkte – Copyright-Jahr, Kontrast und Startseiten-Informationsdic
 
 **Was nur der Nutzertest gefunden hat:**  
 Der Nutzertest hat bestätigt, was die Heuristik nicht direkt messen kann: Gesamtnavigation, Shop-Flow und Ticket-Checkout funktionieren aus Nutzersicht intuitiv und ohne Abbruch. Dieser positive Gegenbefund ist mindestens so wertvoll wie die Probleme – er zeigt, dass die Grundstruktur der Website trägt.
+
+**Was keine der beiden Methoden explizit abgedeckt hat:**  
+Die heuristische Evaluation hat sich auf Interaktionselemente konzentriert und dabei die **News-Seite** nicht als eigenen Prüfpunkt behandelt. Der Nutzertest hat sie jedoch im Rahmen von Task 1 organisch eingeschlossen: Die Testperson hat die Seite besucht und keine Schwierigkeiten gezeigt – ein stiller Positivbefund, der zeigt, dass die Seite ihren Zweck als Informationsquelle für Band-Neuigkeiten und Tourankündigungen intuitiv erfüllt.
 
 ### 4.2 Priorisierte Gesamtliste der 5 wichtigsten Usability-Probleme
 
@@ -122,8 +117,8 @@ Die Evaluation hat mir gezeigt, dass ich als Entwicklerin zu sehr in der Designp
 
 ### 5.2 Was würde ich beim nächsten Projekt anders machen?
 
-Ich würde **visuelle Platzhalter für geplante Features klarer kennzeichnen** – zum Beispiel mit einem dezenten «Coming Soon»-Zustand statt eines voll gestalteten, aber stummen Buttons. Ein Button, der nichts tut, schafft mehr Verwirrung als sein Fehlen. Ausserdem würde ich frühzeitig einen **Funktionstest aller interaktiven Elemente** als festen Schritt vor jedem Nutzertest einplanen, um den Unterschied zwischen «noch nicht implementiert» und «kaputt» klar zu dokumentieren und kommunizieren.
+Ich würde visuelle Platzhalter für geplante Features klar als «Coming Soon» kennzeichnen – ein stummer Button schafft mehr Verwirrung als sein Fehlen. Ausserdem würde ich einen Funktionstest aller interaktiven Elemente fest vor jeden Nutzertest einplanen, um den Unterschied zwischen «noch nicht implementiert» und «kaputt» klar dokumentiert zu haben.
 
 ### 5.3 Persönliche Einschätzung: Welche Methode war wertvoller?
 
-Für mein Projekt war der **Nutzertest die wertvollere Methode** – aber nur in Kombination mit der heuristischen Evaluation. Der Nutzertest hat mir gezeigt, was echte Nutzer tun, fühlen und erwarten. Insbesondere die kurze Unsicherheit beim Klick auf Play-Icons, die nichts taten, war etwas, das ich als Entwicklerin ohne Test nie so direkt wahrgenommen hätte. Die heuristische Evaluation hingegen hat systematisch Probleme aufgedeckt, die im Nutzertest unbemerkt geblieben wären – wie das falsche Copyright-Jahr oder der globale Kontrastverstoss. Keine der beiden Methoden wäre allein ausreichend gewesen: Die Heuristik findet, was falsch ist; der Nutzertest zeigt, was stört – und was überraschend gut funktioniert.
+Für mein Projekt war der **Nutzertest die verlässlichere Methode**: Er hat tatsächlich erlebte Reibung aufgezeigt und gleichzeitig bestätigt, was funktioniert – beides wäre ohne Test unsichtbar geblieben. Die heuristische Evaluation lieferte drei verwertbare Befunde, zwei davon jedoch unprofessionell formuliert oder schlicht inkorrekt. Als systematischer Einstieg bleibt sie wertvoll, braucht aber kritisches Filtern – sonst bewertet man Dinge, die gar kein Problem sind.
